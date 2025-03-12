@@ -10,50 +10,31 @@ import wa from '../assets/images/WhatsApp.png'
 import { ArrowRight, ArrowUp, ArrowDown } from 'lucide-react'
 
 const Home = () => {
-  // Add state for the bottom sheet
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
-  // Add state for scroll to top button visibility
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Toggle function for bottom sheet
   const toggleAboutMe = (e) => {
     e.preventDefault();
     setIsAboutMeOpen(!isAboutMeOpen);
   };
 
-  // Handle scroll events to show/hide the scroll to top button
   useEffect(() => {
     const handleScroll = () => {
-      // Calculate how far the user has scrolled
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollHeight = document.documentElement.scrollHeight;
-      const clientHeight = document.documentElement.clientHeight;
-      
-      // Show button when user is near bottom (within 300px of bottom)
-      const isNearBottom = scrollHeight - scrollTop - clientHeight < 300;
-      // Hide button when user is near top (within 100px of top)
-      const isNearTop = scrollTop < 100;
-      
-      setShowScrollTop(isNearBottom && !isNearTop);
+      setShowScrollTop(scrollTop > 300); // Show button when scrolled down 300px
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
-    
-    // Check initial scroll position
-    handleScroll();
-    
-    // Clean up event listener
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Function to scroll to top
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
+
 
   return (
     <div className='flex flex-col text-white gap-4 px-5 lg:px-80 py-5'>
@@ -267,15 +248,19 @@ const Home = () => {
       </div>
 
       {/* Scroll to Top Button */}
-      {showScrollTop && (
-        <button 
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 bg-indigo-500/80 hover:bg-indigo-500 text-white py-3 px-4 rounded-full shadow-lg transition-all duration-300 flex items-center gap-2 backdrop-blur-sm animate-fadeIn z-50"
-        >
-          <ArrowUp size={18} />
-          <span className="font-medium">Scroll to top</span>
-        </button>
-      )}
+   {showScrollTop && (
+  <button 
+    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+    className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full shadow-md shadow-indigo-500 hover:bg-gray-800 transition-all duration-300"
+  >
+    <ArrowUp className="w-5 h-5" />
+    <span className="text-sm font-medium">Top</span>
+  </button>
+          )}
+        
+
+          
+
 
       {/* Add the CSS animations */}
       <style jsx>{`
