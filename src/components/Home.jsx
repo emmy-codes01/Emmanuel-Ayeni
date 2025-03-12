@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ScrollReveal from 'scrollreveal';
 import me from '../assets/images/image.png'
 import signature from '../assets/images/sign.png'
 import works from '../assets/images/works.png'
@@ -11,41 +12,77 @@ import { ArrowRight, ArrowUp, ArrowDown } from 'lucide-react'
 
 const Home = () => {
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
+//   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const toggleAboutMe = (e) => {
     e.preventDefault();
     setIsAboutMeOpen(!isAboutMeOpen);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      setShowScrollTop(scrollTop > 300); // Show button when scrolled down 300px
-    };
+//  useEffect(() => {
+  // Function to handle scroll event
+//   const handleScroll = () => {
+//     if (window.scrollY > 300) {
+//       document.getElementById('scrollTopBtn').classList.remove('hidden');
+//     } else {
+//       document.getElementById('scrollTopBtn').classList.add('hidden');
+//     }
+//   };
+  
+//   // Add scroll event listener
+//   window.addEventListener('scroll', handleScroll);
+  
+//   // Initial check in case page is already scrolled on load
+//   handleScroll();
+  
+//   // Cleanup event listener on component unmount
+//   return () => {
+//     window.removeEventListener('scroll', handleScroll);
+//   };
+// }, []);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+// Function to handle scroll to top
+// function handleScrollToTop() {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: 'smooth'
+//   });
+// }
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
+    
+
+    
+    // SCROLL REVEAL
+
+ useEffect(() => {
+    // ScrollReveal setup
+    ScrollReveal().reveal('.reveal', {
+      distance: '50px',
+      duration: 1000,
+      delay: 200,
+      easing: 'ease-in-out',
+      opacity: 0,
+      reset: true, // Optional: Reset animation on scroll back
+      scale: 0.8, // Optional: You can scale the element
     });
-  };
+  }, []);
+    
+    
+    
 
+const currentYear = new Date().getFullYear();
 
-  return (
-    <div className='flex flex-col text-white gap-4 px-5 lg:px-80 py-5'>
+    return (
+      
+    <div className='flex flex-col text-white gap-4 px-5 lg:px-80 py-5' id='home'>
       {/* ============= ROW 1 ============= */}
-      <div className='flex md:flex-row flex-col items-stretch gap-4 justify-center'>
+      <div id="home" className='reveal flex md:flex-row flex-col items-stretch gap-4 justify-center'>
         {/* left div - Profile */}
-        <div className='border border-zinc-900 flex justify-center lg:flex-row items-center gap-4 md:gap-8 bg-white/3 py-5 px-5 rounded-4xl w-full md:flex-1'>
-          <img src={me} alt="Emmy" className='rounded-full md:rounded-full size-20 md:size-50 blur-xs'   loading="eager" // Ensure logo is eagerly loaded
+        <div className='reveal border border-zinc-900 flex justify-center lg:flex-row items-center gap-4 md:gap-8 bg-white/3 py-5 px-5 rounded-4xl w-full md:flex-1'>
+          <img src={me} alt="Emmy" className='rounded-full md:rounded-full size-20 md:size-50 blur-xs reveal'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')} />
           
-          <div className='flex flex-col gap-0.1 lg:text-left'>
+          <div className='flex flex-col gap-0.1 lg:text-left reveal'>
             <p className='opacity-70 md:text-xs text-[10px]' style={{fontWeight: '300'}}> Hello I'm</p>
             <p className='font-semibold md:text-2xl text-sm md:text-xl text-indigo-400'>Emmanuel Ayeni.</p>
             <p className='md:text-sm text-[10px] opacity-70 max-w-xs' style={{fontWeight: '300'}}>A Creative Brand Designer, Web Developer & Founder. <span className='hidden lg:block'> I'm known for using my Creativity to design brands and Develop aesthetically pleasing UIs and build scalable web applications that perform efficiently and solve problems.</span></p>
@@ -55,13 +92,13 @@ const Home = () => {
         {/* right div - Cards container */}
         <div className='flex flex-col md:flex-1 gap-4 w-full '>
           {/* About Me section with bottom sheet */}
-          <div className='flex flex-col w-full border border-zinc-900 rounded-3xl'>
+          <div id="about" className='flex flex-col w-full border border-zinc-900 rounded-3xl reveal'>
             <div className='flex items-center justify-between md:justify-center md:gap-10 lg:gap-52 bg-white/3 border-3xl p-5 rounded-3xl'>
               <p className='font-semibold text-xl md:text-2xl lg:text-4xl'>
                 More <span className='text-indigo-400'>About Me.</span>
               </p>
 
-              <a href="/" onClick={toggleAboutMe} className='bg-white/4 shadow-md shadow-indigo-500 p-2 rounded-full hover:bg-white/8 transition-colors animate-float'>
+              <a href="#about" onClick={toggleAboutMe} className='bg-white/4 shadow-md shadow-indigo-500 p-2 rounded-full hover:bg-white/8 transition-colors animate-float'>
                 {isAboutMeOpen ? <ArrowUp size={18} /> : <ArrowDown size={18} />}
               </a>
             </div>
@@ -69,7 +106,7 @@ const Home = () => {
             {/* Bottom Sheet Content */}
             {isAboutMeOpen && (
               <div 
-                className='bg-white/3 border border-white/10 rounded-3xl p-4 md:p-6 mt-1 transition-all duration-300 transform origin-top'
+                className='reveal bg-white/3 border border-white/10 rounded-3xl p-4 md:p-6 mt-1 transition-all duration-300 transform origin-top'
                 style={{
                   animation: 'slideIn 0.3s ease-out forwards',
                 }}
@@ -129,14 +166,14 @@ const Home = () => {
                   <p className='text-[8px] opacity-70'>I DELIVER PREMIUM</p>
                   <p className='font-semibold'>LOGOS & BRAND DESIGNS</p>
                 </div>
-                <a href="/" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                <a href="#projects" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <ArrowRight size={18} className='rotate-45'/>
                 </a>
               </div>
             </div>
 
             {/* two - Projects */}
-            <div className='bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
+            <div id="projects" className='reveal bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
               <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem] blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
@@ -145,7 +182,7 @@ const Home = () => {
                   <p className='text-[8px] opacity-70'>I DEVELOP</p>
                   <p className='font-semibold'>WEB APPLICATIONS</p>
                 </div>
-                <a href="/" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                <a href="#projects" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <ArrowRight size={18} className='rotate-45'/>
                 </a>
               </div>
@@ -157,18 +194,18 @@ const Home = () => {
       {/* ============= ROW 2 ============= */}
       <div className='flex flex-col md:grid md:grid-cols-3 lg:flex lg:flex-row lg:gap-4 gap-4'>
         {/* first */}
-         <div className='flex lg:flex-row flex-col md:grid md:grid-cols-3 items-center items-stretch gap-4 justify-between bg-white/3 border-3xl py-14.5 px-5 rounded-3xl w-full h-full border border-zinc-900'>
-          <div className='bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full h-full shadow-md shadow-indigo-500'>
+         <div className='reveal flex lg:flex-row flex-col md:grid md:grid-cols-3 items-center items-stretch gap-4 justify-between bg-white/3 border-3xl py-14.5 px-5 rounded-3xl w-full h-full border border-zinc-900'>
+          <div className='reveal bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full h-full shadow-md shadow-indigo-500'>
             <p className='text-3xl font-semibold'>03+</p>
             <p className='opacity-60 text-xs text-center' style={{fontWeight: '300'}}>Years <br /> Experience</p>
           </div>
 
-          <div className='bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full shadow-md shadow-indigo-500'>
+          <div className='reveal bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full shadow-md shadow-indigo-500'>
             <p className='text-3xl font-semibold'>15+</p>
             <p className='opacity-60 text-xs text-center' style={{fontWeight: '300'}}>Clients worked with</p>
           </div>
 
-          <div className='bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full shadow-md shadow-indigo-500'>
+          <div className='reveal bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full shadow-md shadow-indigo-500'>
             <p className='text-3xl font-semibold'>50+</p>
             <p className='opacity-60 text-xs text-center' style={{fontWeight: '300'}}>Projects completed</p>
           </div>
@@ -177,8 +214,8 @@ const Home = () => {
 
 
         {/* second */}
-        <div className='bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-          <img src={what} alt="MY SERVICES" className='w-50 mb-[-1.5rem] blur-xs'   loading="eager" // Ensure logo is eagerly loaded
+        <div className='reveal bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
+          <img src={what} alt="MY SERVICES" className='reveal w-50 mb-[-1.5rem] blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
           <div className='flex justify-end items-center w-full'>
@@ -186,7 +223,7 @@ const Home = () => {
               <p className='text-[8px] opacity-70'>ALL THE</p>
               <p className='font-semibold'>SERVICES I OFFER</p>
             </div>
-            <a href="/" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+            <a href="#projects" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
               <ArrowRight size={18} className='rotate-45' />
             </a>
           </div>
@@ -194,8 +231,8 @@ const Home = () => {
 
         {/* third */}
         
-        <div className='bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-          <img src={signature} alt="MacBook Pro" className='w-50 mb-[-1.5rem] blur-xs'   loading="eager" // Ensure logo is eagerly loaded
+        <div className='reveal bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
+          <img src={signature} alt="MacBook Pro" className='reveal w-50 mb-[-1.5rem] blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
           <div className='flex justify-end items-center w-full'>
@@ -203,7 +240,7 @@ const Home = () => {
               <p className='text-[8px] opacity-70'></p>
               <p className='font-semibold'>CREDENTIALS</p>
             </div>
-            <a href="/" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+            <a href="#about" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
               <ArrowRight size={18} className='rotate-45'/>
             </a>
           </div>
@@ -211,11 +248,13 @@ const Home = () => {
       </div>
 
       {/* ============= ROW 3 ============= */}
-      <div className='flex md:flex-row flex-col items-stretch gap-2 justify-center'>
+      <div className='reveal flex md:flex-row flex-col items-stretch gap-2 justify-center ' id='contact'>
        <div className='bg-white/3 rounded-4xl flex flex-col lg:flex-row justify-between items-center py-8 px-5 w-full h-full border border-zinc-900'>
           {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
 
-          <div className='flex justify-center items-center w-full'>
+          {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
+
+          <div className='flex justify-center items-center w-full reveal '>
             <div className='flex flex-col mr-auto'>
               <p className='text-[8px] opacity-70'>CLICK ICONS</p>
               <p className='font-semibold lg:text-2xl'>GET IN TOUCH</p>
@@ -225,18 +264,18 @@ const Home = () => {
             </a> */}
                   </div>
                   
-                  <div className="socials flex gap-3 w-full h-full mr-[-1rem]">
-                      <a href="https://instagram.com/emmanuelayeni_"><img src={ig} alt="Instagram" className='size-20 transition-transform duration-300 hover:scale-130 blur-xs'   loading="eager" // Ensure logo is eagerly loaded
+                  <div className="socials flex gap-3 w-full h-full mr-[-1rem] reveal">
+                      <a href="https://instagram.com/emmanuelayeni_"><img src={ig} alt="Instagram" className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
-                     <a href="https://wa.me/09132489550"><img src={wa} alt="whatsapp" className='size-20 transition-transform duration-300 hover:scale-130 blur-xs'    loading="eager" // Ensure logo is eagerly loaded
+                     <a href="https://wa.me/09132489550"><img src={wa} alt="whatsapp" className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'    loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
-                     <a href=""><img src={li} alt="linkedin"className='size-20 transition-transform duration-300 hover:scale-130 blur-xs'   loading="eager" // Ensure logo is eagerly loaded
+                     <a href=""><img src={li} alt="linkedin"className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
                   </div>
               </div>
 
         {/* two */}
-        <div className='flex items-center justify-between lg:gap-60 gap-10 bg-white/3 border-3xl py-8 px-7 rounded-3xl w-full h-full border border-zinc-900'>
+        <div className='reveal flex items-center justify-between lg:gap-60 gap-10 bg-white/3 border-3xl py-8 px-7 rounded-3xl w-full h-full border border-zinc-900'>
           <p className='font-semibold text-2xl lg:text-4xl'>
             Let's <br /> work <span className='text-indigo-400'>together.</span>
           </p>
@@ -248,19 +287,47 @@ const Home = () => {
       </div>
 
       {/* Scroll to Top Button */}
-   {showScrollTop && (
-  <button 
-    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
-    className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full shadow-md shadow-indigo-500 hover:bg-gray-800 transition-all duration-300"
-  >
-    <ArrowUp className="w-5 h-5" />
-    <span className="text-sm font-medium">Top</span>
-  </button>
-          )}
-        
-
+     {/* <button
+  id="scrollTopBtn"
+  onClick={handleScrollToTop}
+  className="fixed bottom-6 right-6 z-50 hidden flex items-center gap-2 px-4 py-2 bg-black text-white rounded-full shadow-md shadow-indigo-500 hover:bg-gray-800 transition-all duration-300"
+>
+  <ArrowUp className="w-5 h-5" />
+  <span className="text-sm font-medium">Top</span>
+</button> */}
           
-
+<footer className="w-full bg-transparent py-6 border-t border-gray-800 mt-16 mb-20">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          {/* Left side - Copyright and name */}
+          <div className="mb-4 md:mb-0 text-center md:text-left">
+            <p className="text-gray-400 text-sm">
+              <span className="font-medium text-white">Emmanuel Ayeni</span> © {currentYear} All rights reserved
+            </p>
+          </div>
+          
+          {/* Middle - Navigation */}
+          {/* <nav className="mb-4 md:mb-0">
+            <ul className="flex space-x-6">
+              <li><a href="#home" className="text-gray-400 hover:text-white text-sm transition duration-300">Home</a></li>
+              <li><a href="#about" className="text-gray-400 hover:text-white text-sm transition duration-300">About</a></li>
+              <li><a href="#projects" className="text-gray-400 hover:text-white text-sm transition duration-300">Projects</a></li>
+              <li><a href="#contact" className="text-gray-400 hover:text-white text-sm transition duration-300">Contact</a></li>
+            </ul>
+          </nav> */}
+          
+          {/* Right side - Email */}
+          <div className="text-center md:text-right">
+            <a 
+              href="mailto:eayeni185@gmail.com" 
+              className="text-gray-400 shadow-md shadow-indigo-500 p-4 rounded-2xl text-sm hover:text-indigo-400 transition duration-300"
+            >
+              eayeni185@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
       {/* Add the CSS animations */}
       <style jsx>{`

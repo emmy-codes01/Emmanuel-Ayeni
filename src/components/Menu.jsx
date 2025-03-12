@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Home, User, Briefcase, Mail, Menu, X } from 'lucide-react';
 
 const BottomMenu = () => {
@@ -15,6 +15,56 @@ const BottomMenu = () => {
     { id: 'projects', icon: Briefcase, label: 'Projects' },
     { id: 'contact', icon: Mail, label: 'Contact' },
   ];
+
+  // Update active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200; // Adding offset to improve detection
+      
+      // Find all sections and determine which one is in view
+      const sections = menuItems.map(item => document.getElementById(item.id)).filter(Boolean);
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section) {
+          const offsetTop = section.offsetTop;
+          if (scrollPosition >= offsetTop) {
+            setActiveItem(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Alternative navigation method using direct anchor jumps with class change
+  const handleNavClick = (id) => {
+    // Update active state
+    setActiveItem(id);
+    // Close the menu
+    setIsExpanded(false);
+    
+    // Get the target element
+    const targetElement = document.getElementById(id);
+    if (targetElement) {
+      // Calculate position to scroll to
+      const headerOffset = 80; // Adjust based on your header height if needed
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      // Perform smooth scroll
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center items-center px-4 animate-float">
@@ -43,15 +93,10 @@ const BottomMenu = () => {
             const isActive = activeItem === item.id;
             
             return (
-              <a
+              <button
                 key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setActiveItem(item.id);
-                  // Add your navigation logic here
-                }}
-                className={`flex flex-col items-center  justify-center transition-all duration-300 ${
+                onClick={() => handleNavClick(item.id)}
+                className={`flex flex-col items-center justify-center transition-all duration-300 ${
                   isActive 
                     ? 'text-indigo-400 scale-110' 
                     : 'text-white/60 hover:text-white/90'
@@ -61,7 +106,7 @@ const BottomMenu = () => {
                   <IconComponent size={20} />
                 </div>
                 <span className="text-[8px] mt-1">{item.label}</span>
-              </a>
+              </button>
             );
           })}
         </div>
@@ -81,27 +126,21 @@ const BottomMenu = () => {
         }`}
       >
         Tap to explore
-          </div>
-          
-
-
-
-
-            <style jsx>{`
-                @keyframes float {
-                    0%, 100% {
-                        transform: translateY(0);
-                    }
-                    50% {
-                        transform: translateY(-10px);
-                    }
-                }
-                .animate-float {
-                    animation: float 3s ease-in-out infinite;
-                }
-            `}
-            </style>
-
+      </div>
+      
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };
