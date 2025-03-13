@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import ScrollReveal from 'scrollreveal';
 import grid from '../assets/images/OASIS.png'
 import works from '../assets/images/works.png'
 import designs from '../assets/images/designs.png'
@@ -12,22 +13,62 @@ const Projects = () => {
 
   const currentYear = new Date().getFullYear();
 
+    
+    // SCROLL REVEAL
 
+ useEffect(() => {
+    // ScrollReveal setup
+    ScrollReveal().reveal('.reveal', {
+      distance: '50px',
+      duration: 1000,
+      delay: 200,
+      easing: 'ease-in-out',
+      opacity: 0,
+      reset: false, // Optional: Reset animation on scroll back
+      scale: 0.8, // Optional: You can scale the element
+    });
+   
+   
+    ScrollReveal().reveal('.reveal2', {
+      distance: '50px',
+      duration: 1000,
+      delay: 200,
+      easing: 'ease-in-out',
+      origin: 'left',
+      opacity: 0,
+      reset: false, // Optional: Reset animation on scroll back
+      scale: 0.8, // Optional: You can scale the element
+    });
+   
+   
+    ScrollReveal().reveal('.reveal2', {
+      distance: '50px',
+      duration: 1000,
+      delay: 200,
+      origin: 'right',
+      easing: 'ease-in-out',
+      opacity: 0,
+      reset: false, // Optional: Reset animation on scroll back
+      scale: 0.8, // Optional: You can scale the element
+    });
+   
+   
+   
+  }, []);
+    
+    
   return (
     <div className='flex flex-col text-white items-stretch gap-4 px-5 lg:px-85 py-5 lg:py-15'>
       {/* Heading */}
       <div>
-        <h4 className='md:gap-14 lg:gap-52 bg-white/3 border border-zinc-900 border-3xl p-5 rounded-3xl text-2xl font-semibold shadow-md shadow-indigo-500'>My <span className='text-indigo-500'>Portfolio</span></h4>
+        <h4 className='reveal md:gap-14 lg:gap-52 bg-white/3 border border-zinc-900 border-3xl p-5 rounded-3xl text-2xl font-semibold shadow-md shadow-indigo-500'>My <span className='text-indigo-500'>Portfolio</span></h4>
       </div>
-      
-
-      
       
       {/* Cards wrapper */}
       
           <div className='flex gap-4 flex-col md:flex-row w-full h-full' >
             {/* one - Credentials */}
-            <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
+            <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
               <img src={grid} alt="logo compilation" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
@@ -43,7 +84,7 @@ const Projects = () => {
             </div>
 
             {/* two - Projects */}
-            <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
+            <div className='reveal2 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
               <img src={works} alt="MacBook Pro" className='blur-xs bg-cover w-full h-full' loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
@@ -59,7 +100,7 @@ const Projects = () => {
         </div>
         
  {/* three - Projects */}
-            <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
+            <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
               <img src={designs} alt="My Designs" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
