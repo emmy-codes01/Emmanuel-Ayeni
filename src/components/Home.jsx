@@ -3,20 +3,27 @@ import ScrollReveal from 'scrollreveal';
 import me from '../assets/images/image.png'
 import signature from '../assets/images/sign.png'
 import works from '../assets/images/works.png'
-import what from '../assets/images/what.png'
+import what from '../assets/images/serve.png'
 import grid from '../assets/images/upwave.png'
 import ig from '../assets/images/Instagram.png'
 import li from '../assets/images/LinkedIn.png'
 import wa from '../assets/images/WhatsApp.png'
-import { ArrowRight, ArrowUp, ArrowDown } from 'lucide-react'
+import { ArrowRight, ArrowUp, ArrowDown, X, Eye, Mail } from 'lucide-react'
+import { span } from 'framer-motion/client';
 
 const Home = () => {
   const [isAboutMeOpen, setIsAboutMeOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
 //   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const toggleAboutMe = (e) => {
     e.preventDefault();
     setIsAboutMeOpen(!isAboutMeOpen);
+  };
+
+    const toggleServices = (e) => {
+    e.preventDefault();
+    setIsServicesOpen(!isServicesOpen);
   };
 
 //  useEffect(() => {
@@ -62,7 +69,7 @@ const Home = () => {
       delay: 200,
       easing: 'ease-in-out',
       opacity: 0,
-      reset: true, // Optional: Reset animation on scroll back
+      reset: false, // Optional: Reset animation on scroll back
       scale: 0.8, // Optional: You can scale the element
     });
   }, []);
@@ -74,39 +81,39 @@ const currentYear = new Date().getFullYear();
 
     return (
       
-    <div className='flex flex-col text-white gap-4 px-5 lg:px-80 py-5' id='home'>
+    <div className='flex flex-col text-white gap-4 px-5 lg:px-85 py-5 lg:py-15' id='home'>
       {/* ============= ROW 1 ============= */}
       <div id="home" className='reveal flex md:flex-row flex-col items-stretch gap-4 justify-center'>
         {/* left div - Profile */}
-        <div className='reveal border border-zinc-900 flex justify-center lg:flex-row items-center gap-4 md:gap-8 bg-white/3 py-5 px-5 rounded-4xl w-full md:flex-1'>
+        <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal border border-zinc-900 flex justify-center lg:flex-row items-center gap-4 md:gap-8 bg-white/3 py-5 px-5 rounded-4xl w-full md:flex-1'>
           <img src={me} alt="Emmy" className='rounded-full md:rounded-full size-20 md:size-50 blur-xs reveal'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')} />
           
           <div className='flex flex-col gap-0.1 lg:text-left reveal'>
             <p className='opacity-70 md:text-xs text-[10px]' style={{fontWeight: '300'}}> Hello I'm</p>
-            <p className='font-semibold md:text-2xl text-sm md:text-xl text-indigo-400'>Emmanuel Ayeni.</p>
-            <p className='md:text-sm text-[10px] opacity-70 max-w-xs' style={{fontWeight: '300'}}>A Creative Brand Designer, Web Developer & Founder. <span className='hidden lg:block'> I'm known for using my Creativity to design brands and Develop aesthetically pleasing UIs and build scalable web applications that perform efficiently and solve problems.</span></p>
+            <p className='font-semibold md:text-2xl text-sm text-indigo-400'>Emmanuel Ayeni.</p>
+            <p className='md:text-sm text-[10px] opacity-70 max-w-xs' style={{fontWeight: '300'}}>A Creative Brand Designer, Web Developer, Founder & Mentor. <span className='hidden lg:block'> I'm known for using my Creativity to design brands and Develop aesthetically pleasing UIs and build scalable web applications that perform efficiently and solve problems.</span></p>
           </div>
         </div>
         
         {/* right div - Cards container */}
         <div className='flex flex-col md:flex-1 gap-4 w-full '>
           {/* About Me section with bottom sheet */}
-          <div id="about" className='flex flex-col w-full border border-zinc-900 rounded-3xl reveal'>
-            <div className='flex items-center justify-between md:justify-center md:gap-10 lg:gap-52 bg-white/3 border-3xl p-5 rounded-3xl'>
+          <div id="about" className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 flex flex-col w-full border border-zinc-900 rounded-3xl reveal'>
+            <div className='flex items-center justify-between md:justify-between md:gap-14 lg:gap-52 bg-white/3 border-3xl p-5 rounded-3xl'>
               <p className='font-semibold text-xl md:text-2xl lg:text-4xl'>
                 More <span className='text-indigo-400'>About Me.</span>
               </p>
 
-              <a href="#about" onClick={toggleAboutMe} className='bg-white/4 shadow-md shadow-indigo-500 p-2 rounded-full hover:bg-white/8 transition-colors animate-float'>
-                {isAboutMeOpen ? <ArrowUp size={18} /> : <ArrowDown size={18} />}
+              <a href="#about" onClick={toggleAboutMe} className='bg-white/4 text-xs shadow-md shadow-indigo-500 p-2 rounded-full hover:bg-white/8 transition-colors animate-float'>
+                {isAboutMeOpen ? <span className='flex items-center px-1 gap-1'><X size={18} /> Collapse</span> : <span className='flex items-center px-1 gap-1'><ArrowDown size={18} /> Reveal</span> }
               </a>
             </div>
             
             {/* Bottom Sheet Content */}
             {isAboutMeOpen && (
               <div 
-                className='reveal bg-white/3 border border-white/10 rounded-3xl p-4 md:p-6 mt-1 transition-all duration-300 transform origin-top'
+                className='reveal bg-white/3  rounded-3xl p-4 md:p-6 mt-1 transition-all duration-300 transform origin-top'
                 style={{
                   animation: 'slideIn 0.3s ease-out forwards',
                 }}
@@ -142,7 +149,7 @@ const currentYear = new Date().getFullYear();
                 <div className='mt-4 md:mt-6'>
                   <h3 className='text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-400'>Skills & Technologies</h3>
                   <div className='flex flex-wrap gap-2'>
-                    {['Figma', 'Adobe Creative Suite', 'Brand Design', 'UI/UX', 'React', 'Next.js', 
+                    {['Adobe Creative Suite', 'Brand Design', 'UI/UX', 'React', 'Next.js', 
                       'Tailwind CSS', 'JavaScript', 'Node.js', 'MongoDB'].map((skill) => (
                       <span key={skill} className='px-2 md:px-3 py-1 bg-white/5 rounded-full text-[10px] md:text-xs'>
                         {skill}
@@ -155,9 +162,9 @@ const currentYear = new Date().getFullYear();
           </div>
 
           {/* Cards wrapper */}
-          <div className='flex gap-4 flex-col md:flex-row w-full h-full'>
+          <div className='flex gap-4 flex-col md:flex-row w-full h-full' id="projects">
             {/* one - Credentials */}
-            <div className='bg-white/3 rounded-4xl flex flex-col gap-4 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
+            <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-4 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
               <img src={grid} alt="logo compilation" className='rounded-2xl size-45 w-full blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
@@ -173,13 +180,13 @@ const currentYear = new Date().getFullYear();
             </div>
 
             {/* two - Projects */}
-            <div id="projects" className='reveal bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
+            <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
               <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem] blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>I DEVELOP</p>
+                  <p className='text-[8px] opacity-70'>I DEVELOP FAST & SCALABLE</p>
                   <p className='font-semibold'>WEB APPLICATIONS</p>
                 </div>
                 <a href="#projects" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
@@ -194,7 +201,7 @@ const currentYear = new Date().getFullYear();
       {/* ============= ROW 2 ============= */}
       <div className='flex flex-col md:grid md:grid-cols-3 lg:flex lg:flex-row lg:gap-4 gap-4'>
         {/* first */}
-         <div className='reveal flex lg:flex-row flex-col md:grid md:grid-cols-3 items-center items-stretch gap-4 justify-between bg-white/3 border-3xl py-14.5 px-5 rounded-3xl w-full h-full border border-zinc-900'>
+         <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal flex lg:flex-row flex-col md:grid md:grid-cols-3 items-center items-stretch gap-4 justify-between bg-white/3 border-3xl py-14.5 px-5 rounded-3xl w-full h-full border border-zinc-900'>
           <div className='reveal bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full h-full shadow-md shadow-indigo-500'>
             <p className='text-3xl font-semibold'>03+</p>
             <p className='opacity-60 text-xs text-center' style={{fontWeight: '300'}}>Years <br /> Experience</p>
@@ -214,24 +221,67 @@ const currentYear = new Date().getFullYear();
 
 
         {/* second */}
-        <div className='reveal bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-          <img src={what} alt="MY SERVICES" className='reveal w-50 mb-[-1.5rem] blur-xs'   loading="eager" // Ensure logo is eagerly loaded
+        <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
+          <img src={what} alt="MY SERVICES" className='reveal w-50 md:w-42 blur-xs' loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
-          <div className='flex justify-end items-center w-full'>
+          <div className='flex justify-center gap-[-1rem] items-center w-full'>
             <div className='flex flex-col mr-auto'>
-              <p className='text-[8px] opacity-70'>ALL THE</p>
-              <p className='font-semibold'>SERVICES I OFFER</p>
+              <p className='text-[8px] opacity-70'>MY</p>
+              <p className='font-semibold'>SERVICES</p>
             </div>
-            <a href="#projects" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
-              <ArrowRight size={18} className='rotate-45' />
+            <a href="#services" onClick={toggleServices} className='bg-white/4 text-xs p-2 rounded-full shadow-md shadow-indigo-500 flex flex-row '>
+               {isServicesOpen ? <span className='flex items-center px-1 gap-1'><X size={18} /> Collapse</span> : <span className='flex items-center px-1 gap-1'><Eye size={18} /> More Info</span> }
             </a>
-          </div>
+            </div>
+            
+
+
+
+            {isServicesOpen && (
+              <div 
+                className='reveal bg-white/3 rounded-3xl p-4 md:p-6 mt-1 transition-all duration-300 transform origin-top'
+                style={{
+                  animation: 'slideIn 0.3s ease-out forwards',
+                }}
+              >
+                <div className='grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8'>
+                  <div>
+                    <h3 className='text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-400'>Branding & Rebranding</h3>
+                    <p className='text-xs md:text-sm opacity-80 mb-3 md:mb-4' style={{fontWeight: '300'}}>
+                     I will help you create a strong brand identity that is perfect for you or your business. From logos to brand strategy, I will make sure your brand looks professional and feels right for your audience.
+                    </p>
+                    <p className='text-xs md:text-sm opacity-80 hidden' style={{fontWeight: '300'}}>
+                      I combine creativity with technical expertise to deliver solutions 
+                      that not only look great but also perform exceptionally well.
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className='text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-400'>Website Development 🧑‍💻</h3>
+                    <p className='text-xs md:text-sm opacity-80 mb-3 md:mb-4' style={{fontWeight: '300'}}>
+                     I design and develop websites that are fast, user-friendly, and visually appealing. Whether you need a simple portfolio or a full business website or landingpage, I make sure it works smoothly and looks great 😉.
+                    </p>
+                    <p className='text-xs md:text-sm opacity-80 hidden' style={{fontWeight: '300'}}>
+                      Whether designing a brand identity or developing a web application, I focus on 
+                      creating work that's both aesthetically pleasing and functionally sound.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className='mt-4 md:mt-6'>
+                  <h3 className='text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-400'>Graphic Designing (Subscription Only)</h3>
+                  <p className='text-xs md:text-sm opacity-80 mb-3 md:mb-4' style={{fontWeight: '300'}}>
+                    Great designs ain't a one-time thing, it’s ongoing. <span className='font-medium'>My subscription service</span> gives you unlimited, high-quality designs whenever you need them, without the hassle of hiring a full-time designer 😲. It’s the most cost-effective and convenient way to keep your brand looking fresh 😜.
+                    </p>
+                </div>
+              </div>
+            )}
         </div>
 
         {/* third */}
         
-        <div className='reveal bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
+        <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
           <img src={signature} alt="MacBook Pro" className='reveal w-50 mb-[-1.5rem] blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
@@ -240,16 +290,18 @@ const currentYear = new Date().getFullYear();
               <p className='text-[8px] opacity-70'></p>
               <p className='font-semibold'>CREDENTIALS</p>
             </div>
-            <a href="#about" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
-              <ArrowRight size={18} className='rotate-45'/>
+            <a href="https://linkedin.com/in/emmanuel-ayeni01" className='bg-white/4 flex gap-1.5 p-1.5 cursor-pointer rounded-full shadow-md shadow-indigo-500 text-xs'>
+                {/* <ArrowRight size={18} className='rotate-45'/> */}
+              <Eye size={18} />  View on linkedIn
             </a>
           </div>
         </div>
       </div>
 
       {/* ============= ROW 3 ============= */}
-      <div className='reveal flex md:flex-row flex-col items-stretch gap-2 justify-center ' id='contact'>
-       <div className='bg-white/3 rounded-4xl flex flex-col lg:flex-row justify-between items-center py-8 px-5 w-full h-full border border-zinc-900'>
+        <div className='reveal flex md:flex-row flex-col items-stretch lg:gap-[-2rem] gap-2 justify-center ' id='contact'>
+          {/* one */}
+       <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col lg:flex-row justify-between items-center py-8 px-5 w-full h-full border border-zinc-900'>
           {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
 
           {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
@@ -269,19 +321,22 @@ const currentYear = new Date().getFullYear();
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
                      <a href="https://wa.me/09132489550"><img src={wa} alt="whatsapp" className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'    loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
-                     <a href=""><img src={li} alt="linkedin"className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'   loading="eager" // Ensure logo is eagerly loaded
+                     <a href="https://linkedin.com/in/emmanuel-ayeni01"><img src={li} alt="linkedin"className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
                   </div>
               </div>
 
         {/* two */}
-        <div className='reveal flex items-center justify-between lg:gap-60 gap-10 bg-white/3 border-3xl py-8 px-7 rounded-3xl w-full h-full border border-zinc-900'>
+        <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal flex items-center justify-between lg:gap-40 gap-6 bg-white/3 border-3xl py-8 px-7 rounded-3xl w-full h-full border border-zinc-900'>
           <p className='font-semibold text-2xl lg:text-4xl'>
             Let's <br /> work <span className='text-indigo-400'>together.</span>
           </p>
 
-          <a href="/" className='bg-white/4 p-2 rounded-full mt-6 shadow-md shadow-indigo-500'>
-            <ArrowUp size={18} />
+          <a href="http://wa.me/09132489550" className='bg-white/4 p-2 rounded-full mt-6 shadow-md shadow-indigo-500 text-xs'>
+              <span className='flex flex-row gap-1'>
+                 <ArrowUp size={18} />
+              Say Hi!👋
+             </span>
           </a>
         </div>
       </div>
@@ -320,8 +375,9 @@ const currentYear = new Date().getFullYear();
           <div className="text-center md:text-right">
             <a 
               href="mailto:eayeni185@gmail.com" 
-              className="text-gray-400 shadow-md shadow-indigo-500 p-4 rounded-2xl text-sm hover:text-indigo-400 transition duration-300"
-            >
+              className="text-gray-400 shadow-md flex gap-1.5 shadow-indigo-500 p-4 rounded-2xl text-sm hover:text-indigo-400 transition duration-300"
+                >
+               <Mail size={24} />   
               eayeni185@gmail.com
             </a>
           </div>

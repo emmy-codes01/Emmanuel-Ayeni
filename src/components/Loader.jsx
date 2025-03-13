@@ -79,7 +79,7 @@ const FuturisticLoader = ({ isLoading }) => {
         <div className="text-center w-full max-w-xs px-4">
           <div className="text-white font-semibold text-md font-light mb-4 mx-auto">
             Hang tight, Almost there! <br />
-            <span className='text-xs opacity-70 font-normal'> Great things take time, just like this masterpiece.</span>
+            <span className='text-xs opacity-70 font-normal'> Loading your experience... </span>
           </div>
           
           <div className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden mx-auto">

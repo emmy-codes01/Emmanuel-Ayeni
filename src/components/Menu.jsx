@@ -43,10 +43,13 @@ const BottomMenu = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Alternative navigation method using direct anchor jumps with class change
-  const handleNavClick = (id) => {
+  // Navigation method using direct scrolling
+  const handleNavClick = (e, id) => {
+    e.preventDefault(); // Prevent default anchor behavior
+    
     // Update active state
     setActiveItem(id);
+    
     // Close the menu
     setIsExpanded(false);
     
@@ -86,16 +89,17 @@ const BottomMenu = () => {
 
         {/* Menu Items */}
         <div className={`flex justify-between items-center w-full transition-all duration-300 ${
-          isExpanded ? 'opacity-100 ml-10' : 'opacity-0'
+          isExpanded ? 'opacity-100 ml-10' : 'opacity-0 pointer-events-none'
         }`}>
           {menuItems.map((item) => {
             const IconComponent = item.icon;
             const isActive = activeItem === item.id;
             
             return (
-              <button
+              <a 
+                href={`#${item.id}`}
                 key={item.id}
-                onClick={() => handleNavClick(item.id)}
+                onClick={(e) => handleNavClick(e, item.id)}
                 className={`flex flex-col items-center justify-center transition-all duration-300 ${
                   isActive 
                     ? 'text-indigo-400 scale-110' 
@@ -106,14 +110,14 @@ const BottomMenu = () => {
                   <IconComponent size={20} />
                 </div>
                 <span className="text-[8px] mt-1">{item.label}</span>
-              </button>
+              </a>
             );
           })}
         </div>
 
         {/* Hidden Collapsed View */}
         <div className={`absolute inset-0 flex justify-center items-center transition-all duration-300 ${
-          isExpanded ? 'opacity-0' : 'opacity-100'
+          isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}>
           <span className="text-xs font-semibold tracking-widest text-white/80 ml-8">MENU</span>
         </div>

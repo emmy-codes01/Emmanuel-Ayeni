@@ -3,6 +3,7 @@ import Home from './components/Home'
 import BottomMenu from './components/Menu'
 import CustomCursor from './components/CustomCursor'
 import FuturisticLoader from './components/Loader'
+import BottomSheetNotification from './components/Notification'
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -103,7 +104,7 @@ const App = () => {
       <FuturisticLoader isLoading={loading} />
    
       {/* Main Content - only visible after loading */}
-      <div className={`relative bg-black h-full lg:h-[350vh] montserrat overflow-hidden transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+      <div className={`relative bg-black h-full montserrat overflow-hidden transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         {/* Night sky background - with z-index to ensure it stays behind content */}
         <div className="fixed inset-0 bg-black z-0">
           {/* Shooting stars only */}
@@ -127,6 +128,7 @@ const App = () => {
           <Home />
           <BottomMenu />
           <CustomCursor />
+          <BottomSheetNotification />
         </div>
        
         {/* Animation for shooting stars */}
