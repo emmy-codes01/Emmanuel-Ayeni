@@ -9,7 +9,7 @@ const BottomSheetNotification = () => {
     // Show the notification after a short delay
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 7500);
+    }, 12500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -19,20 +19,20 @@ const BottomSheetNotification = () => {
 
   return (
     <div 
-      className={`fixed backdrop-blur-3xl gap-4 bg-black/80 border border-white/10 bottom-0 rounded-3xl transform transition-transform duration-300 ease-in-out z-50 
+      className={`fixed backdrop-blur-3xl gap-4 bg-black/80 border border-white/10 bottom-0 rounded-[2.5rem] transform transition-transform duration-300 ease-in-out z-50 
       sm:right-0 sm:left-auto sm:max-w-md sm:rounded-tl-4xl sm:rounded-tr-4xl
       md:right-6 md:bottom-6 md:rounded-4xl
       xs:left-0 xs:right-0 xs:rounded-t-4xl
       ${isOpen ? 'translate-y-0' : 'translate-y-full sm:translate-y-full md:translate-x-[120%] md:translate-y-0'}
       p-5 text-white`}
     >
-      <div className="flex justify-center items-center mb-4 ml-70 md:ml-85">
+      <div className="flex justify-end items-center mb-4 md:ml-85">
         <div className="flex items-center">
           {/* <MessageSquare className="text-indigo-500 mr-2" size={20} /> */}
           {/* <span className="font-medium">Notification</span> */}
         </div>
         <button onClick={handleClose} className="text-gray-400 hover:text-white">
-          <X size={22} />
+          <X size={30} />
         </button>
       </div>
           
