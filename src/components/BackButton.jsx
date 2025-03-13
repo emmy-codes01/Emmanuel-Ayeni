@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Home, User, Briefcase, Mail, Menu, X } from 'lucide-react';
 
-const BottomMenu = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [activeItem, setActiveItem] = useState('home');
+const BottomButton = () => {
+const navigate = useNavigate();
 
-  const toggleMenu = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  const menuItems = [
-    { id: 'home', icon: Home, label: 'Home' },
-    { id: 'about', icon: User, label: 'About' },
-    { id: 'projects', icon: Briefcase, label: 'Projects' },
-    { id: 'contact', icon: Mail, label: 'Contact' },
-  ];
-
+  
   // Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
@@ -84,7 +74,7 @@ const BottomMenu = () => {
           onClick={toggleMenu}
           className="absolute left-3 z-10 bg-indigo-500/80 hover:bg-indigo-500 rounded-full p-2 transition-all duration-300"
         >
-          {isExpanded ? <X size={20} color='black' /> : <Menu size={20} color='black' />}
+          {isExpanded ? <X size={20} /> : <Menu size={20} />}
         </button>
 
         {/* Menu Items */}
@@ -129,7 +119,14 @@ const BottomMenu = () => {
           isExpanded ? 'opacity-0 pointer-events-none transform translate-y-2' : 'opacity-0'
         }`}
       >
-        Tap to explore
+        {/* Back Button */}
+          <button 
+            onClick={() => navigate(-1)} 
+            className="flex items-center gap-2 mb-6 hover:text-black/80 transition-colors"
+          >
+            <ArrowLeft size={20} />
+            <span>Back</span>
+          </button>
       </div>
       
       <style jsx>{`
@@ -149,4 +146,4 @@ const BottomMenu = () => {
   );
 };
 
-export default BottomMenu;
+export default BottomButton;

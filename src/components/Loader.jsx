@@ -49,7 +49,7 @@ const FuturisticLoader = ({ isLoading }) => {
       if (progress < 100) {
         setProgress(100);
       }
-    }, 8000); // Force completion after 8 seconds max
+    }, 4000); // Force completion after 8 seconds max
     
     return () => clearTimeout(safetyTimeout);
   }, []);
@@ -77,7 +77,7 @@ const FuturisticLoader = ({ isLoading }) => {
         
         {/* Text & Progress - properly centered */}
         <div className="text-center w-full max-w-xs px-4">
-          <div className="text-white font-semibold text-md font-light mb-4 mx-auto">
+          <div className="text-white font-semibold text-md mb-4 mx-auto">
             Hang tight, Almost there! <br />
             <span className='text-xs opacity-70 font-normal'> Loading your experience... </span>
           </div>

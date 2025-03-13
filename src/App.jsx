@@ -1,9 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react'
-import Home from './components/Home'
-import BottomMenu from './components/Menu'
-import CustomCursor from './components/CustomCursor'
-import FuturisticLoader from './components/Loader'
-import BottomSheetNotification from './components/Notification'
+import React, { useState, useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from './components/Home';
+import Projects from './pages/Projects'
+import Brands from './pages/Brands';
+import Websites from './pages/websites';
+import Clients from './pages/Clients';
+import BottomMenu from './components/Menu';
+import CustomCursor from './components/CustomCursor';
+import FuturisticLoader from './components/Loader';
+import BottomSheetNotification from './components/Notification';
+import LiveChat from './pages/LiveChat';
+
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -35,16 +42,6 @@ const App = () => {
     // If you're using the ScrollReveal package
     if (typeof ScrollReveal !== 'undefined') {
       const sr = ScrollReveal();
-      
-      // Configure your scroll reveal animations here
-      // Example: target all sections with the reveal class
-      sr.reveal('.reveal', {
-        duration: 1000,
-        distance: '20px',
-        easing: 'ease-in-out',
-        origin: 'bottom',
-        reset: false
-      });
       
       // Add more specific animations as needed
       sr.reveal('.reveal-left', {
@@ -86,8 +83,7 @@ const App = () => {
       left: Math.random() * 80,
       top: Math.random() * 40,
       duration: Math.random() * 2 + 2.5, // 2.5-4.5s duration
-      size: Math.random() * 1.5 + 0.8,
-      distance: Math.random() * 250 + 150
+      size: Math.random() * 1.5 + 0.8
     };
    
     setShootingStars(prev => [...prev, newStar]);
@@ -99,7 +95,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <Router>
       {/* Futuristic Loader */}
       <FuturisticLoader isLoading={loading} />
    
@@ -123,10 +119,16 @@ const App = () => {
             />
           ))}
         </div>
-        {/* Your existing components with z-index to ensure they're above the stars */}
+        {/* Your content with routes, with z-index to ensure they're above the stars */}
         <div className="relative z-10">
-          <Home />
-          <BottomMenu />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/brands" element={<Brands />} />
+            <Route path="/projects/websites" element={<Websites />} />
+            <Route path="/clients" element={<Clients />} />
+            <Route path="/community" element={<LiveChat />} />
+          </Routes>
           <CustomCursor />
           <BottomSheetNotification />
         </div>
@@ -142,14 +144,14 @@ const App = () => {
               opacity: 0.7;
             }
             100% {
-              transform: translateX(${Math.random() * 200 + 150}px) translateY(${Math.random() * 200 + 150}px) rotate(45deg);
+              transform: translateX(${150}px) translateY(${150}px) rotate(45deg);
               opacity: 0;
             }
           }
         `}</style>
       </div>
-    </>
-  )
-}
+    </Router>
+  );
+};
 
-export default App
+export default App;

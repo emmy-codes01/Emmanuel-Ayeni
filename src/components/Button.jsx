@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Home, User, Briefcase, Mail, Menu, X } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Home, User, Briefcase, Mail, Menu, X, ArrowLeft } from 'lucide-react';
 
-const BottomMenu = () => {
+const Button = () => {
+
+const navigate = useNavigate();
+
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeItem, setActiveItem] = useState('home');
 
-  const toggleMenu = () => {
-    setIsExpanded(!isExpanded);
-  };
+
 
   const menuItems = [
     { id: 'home', icon: Home, label: 'Home' },
@@ -70,7 +72,7 @@ const BottomMenu = () => {
   };
 
   return (
-    <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center items-center px-4 animate-float">
+    <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center items-center px-4 py-4  animate-float">
       <div 
         className={`relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl transition-all duration-300 flex items-center ${
           isExpanded ? 'py-2 px-5 w-full max-w-md' : 'p-1'
@@ -80,12 +82,13 @@ const BottomMenu = () => {
         }}
       >
         {/* Toggle Button */}
-        <button 
-          onClick={toggleMenu}
+              <Link
+        to="/"          
+        onClick={() => navigate(-1)} 
           className="absolute left-3 z-10 bg-indigo-500/80 hover:bg-indigo-500 rounded-full p-2 transition-all duration-300"
         >
-          {isExpanded ? <X size={20} color='black' /> : <Menu size={20} color='black' />}
-        </button>
+          <ArrowLeft size={20} color='black'/>
+        </Link>
 
         {/* Menu Items */}
         <div className={`flex justify-between items-center w-full transition-all duration-300 ${
@@ -119,7 +122,7 @@ const BottomMenu = () => {
         <div className={`absolute inset-0 flex justify-center items-center transition-all duration-300 ${
           isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}>
-          <span className="text-xs font-semibold tracking-widest text-white/80 ml-8">MENU</span>
+          <span className="text-xs font-semibold tracking-widest text-white/80 ml-8">Go Back</span>
         </div>
       </div>
 
@@ -149,4 +152,4 @@ const BottomMenu = () => {
   );
 };
 
-export default BottomMenu;
+export default Button;

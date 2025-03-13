@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import me from '../assets/images/model.webp'
 import { X, MessageSquare, ArrowRight } from 'lucide-react';
 
@@ -53,12 +54,14 @@ const BottomSheetNotification = () => {
           Tell me about your project
           <ArrowRight className="ml-2" size={16} />
         </a>
-        <button 
+
+        <Link 
+          to="/projects"
           onClick={handleClose}
           className="bg-white/5 hover:bg-white/10 text-white py-3 px-4 rounded-2xl flex items-center justify-center font-semibold transition-colors"
         >
-          Keep exploring my space
-        </button>
+          See my past works
+        </Link>
       </div>
     </div>
   );
