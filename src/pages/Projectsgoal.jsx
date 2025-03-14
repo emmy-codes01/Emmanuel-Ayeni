@@ -12,7 +12,7 @@ import Button from '../components/Button';
 
 
 
-const Projects = () => {
+const Projectsgoal = () => {
 
   const currentYear = new Date().getFullYear();
 
@@ -189,4 +189,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default Projectsgoal

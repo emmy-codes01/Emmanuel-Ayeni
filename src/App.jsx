@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './components/Home';
 import Graphics from './pages/Graphics';
-import Projects from './pages/Projects';
+import Projectsgoal from './pages/Projectsgoal';
 import Brands from './pages/Brands';
 import Websites from './pages/Websites';
 import Clients from './pages/Clients';
@@ -124,7 +124,7 @@ const App = () => {
         <div className="relative z-10">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects" element={<Projectsgoal />} />
             <Route path="/projects/logos&brand-designs" element={<Brands />} />
             <Route path="/projects/websites" element={<Websites />} />
             <Route path="/clients" element={<Clients />} />

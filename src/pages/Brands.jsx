@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import ScrollReveal from 'scrollreveal';
+import Button from '../components/Button';
 
 const Brands = () => {
 
@@ -85,7 +86,7 @@ const Brands = () => {
         </div>
       </div>
     </footer>
-
+<Button />
     </div>
   )
 }
