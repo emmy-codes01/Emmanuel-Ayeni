@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import ScrollReveal from 'scrollreveal';
 
-const Websites = () => {
+const Graphics = () => {
 
+     console.log("Graphics component rendering attempt");
 
 
   const currentYear = new Date().getFullYear();
@@ -45,15 +46,19 @@ const Websites = () => {
 
 
   return (
-    <div className='flex flex-col text-white items-stretch gap-4 px-5 lg:px-85 py-5 lg:py-15'>
+      <div className='reveal flex flex-col text-white items-stretch gap-4 px-5 lg:px-85 py-5 lg:py-15'>
       {/* Heading */}
       <div>
-        <h4 className='reveal md:gap-14 lg:gap-52 bg-white/3 border border-zinc-900 border-3xl p-5 rounded-3xl text-2xl font-semibold shadow-md shadow-indigo-500'>Websites <span className='text-indigo-500'>&</span> Landingpages</h4>
+        <h4 className='md:gap-14 lg:gap-52 bg-white/3 border border-zinc-900 border-3xl p-5 rounded-3xl text-2xl font-semibold shadow-md shadow-indigo-500'>Graphic <span className='text-indigo-500'>Designs</span></h4>
       </div>
+      
+      
+          
 
 
 
-      <footer className="w-full bg-transparent py-6 border-t border-gray-800 mt-16 mb-20">
+
+          <footer className="w-full bg-transparent py-6 border-t border-gray-800 mt-16 mb-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Left side - Copyright and name */}
@@ -87,8 +92,8 @@ const Websites = () => {
       </div>
     </footer>
 
-    </div>
+      </div>
   )
 }
 
-export default Websites
+export default Graphics

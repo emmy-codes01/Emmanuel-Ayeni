@@ -279,9 +279,9 @@ const currentYear = new Date().getFullYear();
                 </div>
                 
                 <div className='mt-4 md:mt-6'>
-                  <h3 className='text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-400'>Graphic Designing (Subscription Only)</h3>
+                  <h3 className='text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-400'>Graphic Designing <span className='text-amber-300'>(Subscription Only)</span></h3>
                   <p className='text-xs md:text-sm opacity-80 mb-3 md:mb-4' style={{fontWeight: '300'}}>
-                    Great designs ain't a one-time thing, it’s ongoing. <span className='font-medium'>My subscription service</span> gives you unlimited, high-quality designs whenever you need them, without the hassle of hiring a full-time designer 😲. It’s the most cost-effective and convenient way to keep your brand looking fresh 😜.
+                    Great designs ain't a one-time thing, it’s ongoing. <span className='font-medium'>My subscription service</span> gives you <span className='text-amber-300'>unlimited, high-quality designs </span>whenever you need them, without the hassle of hiring a full-time designer 😲. It’s the most cost-effective and convenient way to keep your brand looking fresh 😜.
                   </p>
                    <a href="https://wa.me/2349132489550?text=Hi%20Emmy,%20please%20send%20me%20your%20Graphic%20Design%20subscription%20Packages." className='bg-indigo-500 text-white px-2 py-2 text-xs rounded-full border border-black'>I need this</a>
                 </div>
@@ -318,7 +318,7 @@ const currentYear = new Date().getFullYear();
 
           <div className='flex justify-center items-center w-full reveal '>
             <div className='flex flex-col mr-auto'>
-              <p className='text-[8px] opacity-70'>CLICK ICONS</p>
+              <p className='text-[8px] opacity-70'>CLICK ICONS TO</p>
               <p className='font-semibold lg:text-2xl'>GET IN TOUCH</p>
             </div>
             {/* <a href="/" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>

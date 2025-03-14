@@ -4,7 +4,10 @@ import grid from '../assets/images/OASIS.png'
 import works from '../assets/images/works.png'
 import designs from '../assets/images/designs.png'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, ArrowUp, ArrowDown, X, Eye, Mail } from 'lucide-react'
+import ig from '../assets/images/Instagram.png'
+import li from '../assets/images/LinkedIn.png'
+import wa from '../assets/images/WhatsApp.png'
 import Button from '../components/Button';
 
 
@@ -29,27 +32,19 @@ const Projects = () => {
     });
    
    
-    ScrollReveal().reveal('.reveal2', {
-      distance: '50px',
-      duration: 1000,
+ ScrollReveal().reveal(".reveal1", {
+      origin: "left",
+      distance: "800px",
+      duration: 1200,
       delay: 200,
-      easing: 'ease-in-out',
-      origin: 'left',
-      opacity: 0,
-      reset: false, // Optional: Reset animation on scroll back
-      scale: 0.8, // Optional: You can scale the element
+      reset: true,
     });
-   
-   
-    ScrollReveal().reveal('.reveal2', {
-      distance: '50px',
-      duration: 1000,
+    ScrollReveal().reveal(".reveal2", {
+      origin: "right",
+      distance: "800px",
+      duration: 1200,
       delay: 200,
-      origin: 'right',
-      easing: 'ease-in-out',
-      opacity: 0,
-      reset: false, // Optional: Reset animation on scroll back
-      scale: 0.8, // Optional: You can scale the element
+      reset: true,
     });
    
    
@@ -58,10 +53,11 @@ const Projects = () => {
     
     
   return (
-    <div className='flex flex-col text-white items-stretch gap-4 px-5 lg:px-85 py-5 lg:py-15'>
+    <div className='flex flex-col text-white items-stretch gap-4 px-5 lg:px-85 py-5 lg:py-15 reveal'>
       {/* Heading */}
-      <div>
-        <h4 className='reveal md:gap-14 lg:gap-52 bg-white/3 border border-zinc-900 border-3xl p-5 rounded-3xl text-2xl font-semibold shadow-md shadow-indigo-500'>My <span className='text-indigo-500'>Portfolio</span></h4>
+      <div className='flex flex-col bg-white/3 border border-zinc-900 rounded-3xl border-3xl p-5 shadow-md shadow-indigo-500'>
+        <h4 className=' text-2xl font-semibold '>My <span className='text-indigo-500'>Portfolio</span></h4>
+        <p className='font-light opacity-70 text-[10px]'>selected case studies</p>
       </div>
       
       {/* Cards wrapper */}
@@ -72,13 +68,13 @@ const Projects = () => {
               <img src={grid} alt="logo compilation" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
-              <div className='flex justify-between items-center w-full'>
+              <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>I DELIVER PREMIUM</p>
-                  <p className='font-semibold'>LOGOS & BRAND DESIGNS</p>
+                  <p className='text-[8px] opacity-70'>I DELIVER PREMIUM LOGOS &</p>
+                  <p className='font-semibold'>BRAND DESIGNS</p>
                 </div>
-                <Link to="/projects/brands" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
-                  <span className='flex gap-1 text-xs items-center'>See More <ArrowRight size={10} /></span>
+                <Link to="/projects/logos&brand-designs" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                  <span className='flex text-xs items-center'>See More<ArrowRight size={10} /></span>
                 </Link>
               </div>
             </div>
@@ -109,7 +105,7 @@ const Projects = () => {
                   <p className='text-[8px] opacity-70'>I DESIGN HIGH QUALITY</p>
                   <p className='font-semibold'>CUSTOM GRAPHICS</p>
                 </div>
-                <Link to="/projects/websites" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                <Link to="/projects/graphic-designs" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <span className='flex gap-1 text-xs items-center'>See More <ArrowRight size={10} /></span>
                 </Link>
               </div>
@@ -117,7 +113,33 @@ const Projects = () => {
 
       </div>
       
+      {/* ROW 2 */}
+        <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col lg:flex-row justify-evenly  items-center py-8 px-5 w-full h-full border border-zinc-900'>
+                {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
+      
+                {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
+      
+                <div className='flex justify-center items-center w-full reveal '>
+                  <div className='flex flex-col mr-auto'>
+                    <p className='text-[8px] opacity-70'>CLICK ICONS TO</p>
+                    <p className='font-semibold lg:text-2xl'>GET IN TOUCH</p>
+                  </div>
+                  {/* <a href="/" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                    <ArrowRight size={18} className='rotate-125' />
+                  </a> */}
+                        </div>
+                        
+                        <div className="socials flex gap-3 w-full h-full mr-[-1rem] reveal">
+                            <a href="https://instagram.com/emmanuelayeni_"><img src={ig} alt="Instagram" className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'   loading="eager" // Ensure logo is eagerly loaded
+                        onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
+                           <a href="https://wa.me/+2349132489550"><img src={wa} alt="whatsapp" className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'    loading="eager" // Ensure logo is eagerly loaded
+                        onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
+                           <a href="https://linkedin.com/in/emmanuel-ayeni01"><img src={li} alt="linkedin"className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'   loading="eager" // Ensure logo is eagerly loaded
+                        onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
+                        </div>
+                    </div>
 
+      
 
          
 <footer className="w-full bg-transparent py-6 border-t border-gray-800 mt-16 mb-20">
