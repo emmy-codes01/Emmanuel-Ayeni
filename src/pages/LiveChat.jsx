@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Send, MessageCircle, ThumbsUp, User } from 'lucide-react';
+import { Send, MessageCircle, ThumbsUp, User, Home } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import { 
   getFirestore, 
@@ -135,7 +136,7 @@ const LiveChat = () => {
           placeholder="Your name"
           value={userName}
           onChange={(e) => setUserName(e.target.value)}
-          className="w-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition"
+          className="w-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition"
           required
         />
         <div className="flex relative">
@@ -143,16 +144,16 @@ const LiveChat = () => {
             placeholder="Add a review or recommendation..."
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            className="w-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition"
+            className="w-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition"
             rows={2}
             required
           />
           <button
             type="submit"
             disabled={!newComment.trim() || !userName.trim()}
-            className="absolute right-3 bottom-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg p-2 flex items-center justify-center transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="absolute right-3 bottom-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full p-3.5 flex items-center justify-center transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Send size={18} />
+            <Send size={25} />
           </button>
         </div>
       </form>
@@ -175,10 +176,10 @@ const LiveChat = () => {
           </div>
         ) : (
           comments.map((comment) => (
-            <div key={comment.id} className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:border-indigo-500/30 transition-all duration-300">
+            <div key={comment.id} className="bg-white/5 backdrop-blur-sm rounded-3xl p-5 border border-white/10 hover:border-indigo-500/30 transition-all duration-300">
               <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center">
-                  <div className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-full p-2 mr-3">
+                  <div className="bg-gradient-to-br from-indigo-500 to-to-indigo-700 rounded-full p-2 mr-3">
                     <User size={16} className="text-white" />
                   </div>
                   <span className="font-medium text-white">{comment.user}</span>
@@ -191,7 +192,7 @@ const LiveChat = () => {
                   className="flex items-center hover:text-indigo-400 transition-colors"
                   onClick={() => handleLikeComment(comment.id)}
                 >
-                  <ThumbsUp size={14} className="mr-1.5" />
+                  <ThumbsUp size={18} className="mr-1.5" />
                   <span>{comment.likes}</span>
                 </button>
               </div>
@@ -201,9 +202,15 @@ const LiveChat = () => {
       </div>
       
       {/* Floating action button */}
-      <div className="fixed bottom-6 right-6 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full p-3 shadow-lg shadow-indigo-500/30 cursor-pointer hover:scale-110 transition-transform duration-200">
-        <MessageCircle size={24} className="text-white" />
+      <div className="fixed bottom-6 right-6 bg-gradient-to-r from-indigo-500 to-indigo-700 rounded-full p-3 shadow-lg shadow-indigo-500/30 cursor-pointer hover:scale-110 transition-transform duration-200">
+        <Link to='/'>
+           <Home size={30} className="text-white" />
+        </Link>
       </div>
+
+
+
+      
     </div>
   );
 };
