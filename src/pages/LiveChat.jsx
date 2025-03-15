@@ -1,9 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { Send, MessageCircle, ThumbsUp, User } from 'lucide-react';
+import { initializeApp } from 'firebase/app';
+import { 
+  getFirestore, 
+  collection, 
+  addDoc, 
+  // getDocs, 
+  onSnapshot, 
+  query, 
+  orderBy, 
+  serverTimestamp, 
+  updateDoc,
+  doc,
+  increment
+} from 'firebase/firestore';
 
-// In a real implementation, you would use a database/backend service
-// like Firebase, Supabase, or your own custom backend
-// This example demonstrates the UI and structure
+// Firebase configuration - replace with your own Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyAxzSXt3KkWBT7mAhq-EeVDRNz9Gmh39xg",
+  authDomain: "emmy-codes.firebaseapp.com",
+  projectId: "emmy-codes",
+  storageBucket: "emmy-codes.firebasestorage.app",
+  messagingSenderId: "266870836039",
+  appId: "1:266870836039:web:c5b8919bf492cc4f471a62",
+  measurementId: "G-X2D2RQ06F9"
+};
+
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const LiveChat = () => {
   const [comments, setComments] = useState([]);
@@ -12,38 +38,35 @@ const LiveChat = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Simulate fetching comments from an API
+  // Fetch and listen to comments in real-time
   useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        setIsLoading(true);
-        // In a real app, replace with actual API call
-        // const response = await fetch('https://your-api.com/comments');
-        // const data = await response.json();
-        
-        // Simulated response data
-        const data = [
-          { id: 1, user: 'Sarah Johnson', content: 'Love your website design! The dark theme with indigo accents looks amazing.', timestamp: new Date(Date.now() - 840000000), likes: 12 },
-          { id: 2, user: 'Michael Chen', content: 'Your portfolio projects are impressive. Would love to collaborate sometime!', timestamp: new Date(Date.now() - 420000000), likes: 8 },
-          { id: 3, user: 'Olivia Rodriguez', content: 'Just reached out via WhatsApp. Looking forward to discussing my project with you.', timestamp: new Date(Date.now() - 120000000), likes: 5 }
-        ];
-        
-        setComments(data);
-        setIsLoading(false);
-      } catch (err) {
-        setError('Failed to load comments');
-        setIsLoading(false);
-      }
-    };
+    const commentsRef = collection(db, "comments");
+    const commentsQuery = query(commentsRef, orderBy("timestamp", "asc"));
     
-    fetchComments();
-    
-    // For live updates, you would use a real-time connection
-    // Example with WebSockets or Firebase:
-    // const unsubscribe = onCommentsUpdate(newComments => {
-    //   setComments(newComments);
-    // });
-    // return () => unsubscribe();
+    try {
+      // Set up real-time listener
+      const unsubscribe = onSnapshot(commentsQuery, (snapshot) => {
+        const commentsData = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+          timestamp: doc.data().timestamp?.toDate() || new Date()
+        }));
+        
+        setComments(commentsData);
+        setIsLoading(false);
+      }, (error) => {
+        console.error("Error listening to comments:", error);
+        setError('Failed to load comments: ' + error.message);
+        setIsLoading(false);
+      });
+      
+      // Clean up listener on component unmount
+      return () => unsubscribe();
+    } catch (err) {
+      console.error("Error setting up listener:", err);
+      setError('Failed to connect to database');
+      setIsLoading(false);
+    }
   }, []);
 
   const handleSubmitComment = async (e) => {
@@ -51,40 +74,38 @@ const LiveChat = () => {
     
     if (!newComment.trim() || !userName.trim()) return;
     
-    // Optimistically add comment to UI
-    const newCommentObj = {
-      id: Date.now(),
-      user: userName,
-      content: newComment,
-      timestamp: new Date(),
-      likes: 0
-    };
-    
-    setComments([...comments, newCommentObj]);
-    setNewComment('');
-    
     try {
-      // In a real app, send to backend
-      // await fetch('https://your-api.com/comments', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     user: userName,
-      //     content: newComment
-      //   }),
-      // });
+      // Add new comment to Firestore
+      await addDoc(collection(db, "comments"), {
+        user: userName,
+        content: newComment,
+        timestamp: serverTimestamp(), // Use server timestamp for consistency
+        likes: 0
+      });
       
-      // If failed, you could revert the optimistic update
+      // Clear input field after successful submission
+      setNewComment('');
     } catch (err) {
-      setError('Failed to post comment');
-      // Remove the optimistically added comment
-      setComments(comments.filter(comment => comment.id !== newCommentObj.id));
+      console.error("Error adding comment:", err);
+      setError('Failed to post comment: ' + err.message);
+    }
+  };
+  
+  const handleLikeComment = async (commentId) => {
+    try {
+      const commentRef = doc(db, "comments", commentId);
+      await updateDoc(commentRef, {
+        likes: increment(1)
+      });
+    } catch (err) {
+      console.error("Error liking comment:", err);
+      setError('Failed to like comment');
     }
   };
 
   const formatTimestamp = (timestamp) => {
+    if (!timestamp) return 'just now';
+    
     const now = new Date();
     const commentTime = new Date(timestamp);
     const diffInSeconds = Math.floor((now - commentTime) / 1000);
@@ -99,7 +120,7 @@ const LiveChat = () => {
     <div className="w-full max-w-3xl mx-auto bg-black/40 backdrop-blur-lg border border-white/10 rounded-xl p-6 mt-12">
       <div className="flex items-center mb-6">
         <MessageCircle className="text-indigo-400 mr-2" />
-        <h2 className="text-xl font-bold text-white">Comments</h2>
+        <h2 className="text-xl font-bold text-white">Clients' Reviews</h2>
         <div className="ml-2 bg-indigo-500/70 text-white text-xs font-semibold px-2 py-1 rounded-full">
           {comments.length}
         </div>
@@ -158,11 +179,13 @@ const LiveChat = () => {
               </div>
               <p className="text-white/80 mb-3">{comment.content}</p>
               <div className="flex items-center text-white/40 text-xs">
-                <button className="flex items-center hover:text-indigo-400 transition">
+                <button 
+                  className="flex items-center hover:text-indigo-400 transition"
+                  onClick={() => handleLikeComment(comment.id)}
+                >
                   <ThumbsUp size={14} className="mr-1" />
                   <span>{comment.likes}</span>
                 </button>
-                {/* Additional actions could go here */}
               </div>
             </div>
           ))
