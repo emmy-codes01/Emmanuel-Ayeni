@@ -33,11 +33,16 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const LiveChat = () => {
+
+
+  const currentYear = new Date().getFullYear();
+
+
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [userName, setUserName] = useState('');
   const [userPosition, setUserPosition] = useState(''); // New state for user position
-  const [rating, setRating] = useState(5); // Default to 5 stars
+  const [rating, setRating] = useState(0); // Changed to 0 to make stars unchecked by default
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [userId, setUserId] = useState('');
@@ -91,6 +96,13 @@ const LiveChat = () => {
     
     if (!newComment.trim() || !userName.trim()) return;
     
+    // Validation for rating
+    if (rating === 0) {
+      setError('Please select a star rating');
+      setTimeout(() => setError(null), 3000);
+      return;
+    }
+    
     try {
       // Add new comment to Firestore
       await addDoc(collection(db, "comments"), {
@@ -106,10 +118,11 @@ const LiveChat = () => {
       
       // Clear input fields after successful submission
       setNewComment('');
+      // Reset rating after submission
+      setRating(0);
       // Optionally reset other fields if you want users to submit multiple reviews
       // setUserName('');
       // setUserPosition('');
-      // setRating(5);
     } catch (err) {
       console.error("Error adding comment:", err);
       setError('Failed to post review: ' + err.message);
@@ -163,7 +176,7 @@ const LiveChat = () => {
     return `${Math.floor(diffInSeconds / 86400)}d ago`;
   };
 
-  // Render star rating component
+  // Render star rating component - updated to handle 0 value
   const StarRating = ({ value, onChange }) => {
     return (
       <div className="flex items-center mb-3">
@@ -175,13 +188,16 @@ const LiveChat = () => {
               size={24}
               onClick={() => onChange?.(star)}
               className={`cursor-pointer transition-colors ${
-                star <= value
+                star <= value && value > 0
                   ? 'text-yellow-400 fill-yellow-400'
                   : 'text-white/20'
               }`}
             />
           ))}
         </div>
+        {value > 0 && (
+          <span className="text-white/60 text-xs ml-2">({value}/5)</span>
+        )}
       </div>
     );
   };
@@ -336,6 +352,47 @@ const LiveChat = () => {
            <Home size={30} className="text-white" />
         </Link>
       </div>
+
+
+
+
+
+
+      <footer className="w-full bg-transparent py-6 border-t border-gray-800 mt-16 mb-20">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          {/* Left side - Copyright and name */}
+          <div className="mb-4 md:mb-0 text-center md:text-left">
+            <p className="text-gray-400 text-sm">
+              <span className="font-medium text-white">Emmanuel Ayeni</span> © {currentYear} All rights reserved
+            </p>
+          </div>
+          
+          {/* Middle - Navigation */}
+          {/* <nav className="mb-4 md:mb-0">
+            <ul className="flex space-x-6">
+              <li><a href="#home" className="text-gray-400 hover:text-white text-sm transition duration-300">Home</a></li>
+              <li><a href="#about" className="text-gray-400 hover:text-white text-sm transition duration-300">About</a></li>
+              <li><a href="#projects" className="text-gray-400 hover:text-white text-sm transition duration-300">Projects</a></li>
+              <li><a href="#contact" className="text-gray-400 hover:text-white text-sm transition duration-300">Contact</a></li>
+            </ul>
+          </nav> */}
+          
+          {/* Right side - Email */}
+          {/* <div className="text-center md:text-right">
+            <a 
+              href="mailto:eayeni105@gmail.com" 
+              className="text-gray-400 shadow-md flex gap-1.5 shadow-indigo-500 p-4 rounded-2xl text-sm hover:text-indigo-400 transition duration-300"
+                >
+               <Mail size={24} />   
+              eayeni105@gmail.com
+            </a>
+          </div> */}
+        </div>
+      </div>
+    </footer>
+
+
     </div>
   );
 };
