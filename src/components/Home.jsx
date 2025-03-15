@@ -10,7 +10,7 @@ import grid from '../assets/images/upwave.png'
 import ig from '../assets/images/Instagram.png'
 import li from '../assets/images/LinkedIn.png'
 import wa from '../assets/images/WhatsApp.png'
-import { ArrowRight, ArrowUp, ArrowDown, X, Eye, Mail, BadgeCheck } from 'lucide-react'
+import { ArrowRight, ArrowUp, ArrowDown, X, Eye, Mail, BadgeCheck, Users } from 'lucide-react'
 // import FuturisticLoader from '../components/Loader'
 
 
@@ -343,12 +343,12 @@ const currentYear = new Date().getFullYear();
             Let's <br /> work <span className='text-indigo-400'>together.</span>
           </p>
 
-          <a href="http://wa.me/09132489550" className='bg-white/4 p-2 rounded-full mt-6 shadow-md shadow-indigo-500 text-xs'>
+          <Link to="/success-stories" className='bg-white/4 p-2 px-3 rounded-full mt-6 shadow-md shadow-indigo-500 text-xs animate-float'>
               <span className='flex flex-row gap-1'>
-                 <ArrowUp size={18} />
-              Say Hi!👋
+                <Users size={18} />
+             Reviews
              </span>
-          </a>
+          </Link>
         </div>
       </div>
 
