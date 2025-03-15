@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, MessageCircle, ThumbsUp, User, Home } from 'lucide-react';
+import { Send, MessageCircle, ThumbsUp, User, Home, Star, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { initializeApp } from 'firebase/app';
 import { 
@@ -12,7 +12,9 @@ import {
   serverTimestamp, 
   updateDoc,
   doc,
-  increment
+  increment,
+  arrayUnion,
+  getDoc
 } from 'firebase/firestore';
 
 // Firebase configuration - replace with your own Firebase config
@@ -34,8 +36,23 @@ const LiveChat = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [userName, setUserName] = useState('');
+  const [userPosition, setUserPosition] = useState(''); // New state for user position
+  const [rating, setRating] = useState(5); // Default to 5 stars
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userId, setUserId] = useState('');
+
+  // Generate a unique user ID for the current session if not already set
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('reviewUserId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    } else {
+      const newUserId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('reviewUserId', newUserId);
+      setUserId(newUserId);
+    }
+  }, []);
 
   // Fetch and listen to comments in real-time
   useEffect(() => {
@@ -48,7 +65,8 @@ const LiveChat = () => {
         const commentsData = snapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data(),
-          timestamp: doc.data().timestamp?.toDate() || new Date()
+          timestamp: doc.data().timestamp?.toDate() || new Date(),
+          likedByCurrentUser: doc.data().likedBy?.includes(userId) || false
         }));
         
         setComments(commentsData);
@@ -66,7 +84,7 @@ const LiveChat = () => {
       setError('Failed to connect to database');
       setIsLoading(false);
     }
-  }, []);
+  }, [userId]);
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -77,13 +95,21 @@ const LiveChat = () => {
       // Add new comment to Firestore
       await addDoc(collection(db, "comments"), {
         user: userName,
+        position: userPosition, // Add position to the document
         content: newComment,
         timestamp: serverTimestamp(), // Use server timestamp for consistency
-        likes: 0
+        likes: 0,
+        likedBy: [], // Array to track users who liked this comment
+        rating: rating, // Add star rating
+        userId: userId // Associate the comment with the current user
       });
       
-      // Clear input field after successful submission
+      // Clear input fields after successful submission
       setNewComment('');
+      // Optionally reset other fields if you want users to submit multiple reviews
+      // setUserName('');
+      // setUserPosition('');
+      // setRating(5);
     } catch (err) {
       console.error("Error adding comment:", err);
       setError('Failed to post review: ' + err.message);
@@ -92,10 +118,32 @@ const LiveChat = () => {
   
   const handleLikeComment = async (commentId) => {
     try {
+      // Get the comment document
       const commentRef = doc(db, "comments", commentId);
+      const commentSnap = await getDoc(commentRef);
+      
+      // Check if user already liked this comment
+      if (commentSnap.exists() && commentSnap.data().likedBy?.includes(userId)) {
+        // User already liked this comment, show a notification or handle as needed
+        setError('You have already liked this review');
+        setTimeout(() => setError(null), 3000);
+        return;
+      }
+      
+      // Update the comment with new like count and add user to likedBy array
       await updateDoc(commentRef, {
-        likes: increment(1)
+        likes: increment(1),
+        likedBy: arrayUnion(userId)
       });
+      
+      // Update local state to reflect the change
+      setComments(prevComments => 
+        prevComments.map(comment => 
+          comment.id === commentId 
+            ? {...comment, likes: comment.likes + 1, likedByCurrentUser: true} 
+            : comment
+        )
+      );
     } catch (err) {
       console.error("Error liking comment:", err);
       setError('Failed to like review');
@@ -115,14 +163,60 @@ const LiveChat = () => {
     return `${Math.floor(diffInSeconds / 86400)}d ago`;
   };
 
+  // Render star rating component
+  const StarRating = ({ value, onChange }) => {
+    return (
+      <div className="flex items-center mb-3">
+        <span className="text-white/60 mr-2 text-sm">Your rating:</span>
+        <div className="flex">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <Star
+              key={star}
+              size={24}
+              onClick={() => onChange?.(star)}
+              className={`cursor-pointer transition-colors ${
+                star <= value
+                  ? 'text-yellow-400 fill-yellow-400'
+                  : 'text-white/20'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  // Render stars for a comment
+  const RatingStars = ({ rating }) => {
+    return (
+      <div className="flex items-center mb-1">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <Star
+            key={star}
+            size={16}
+            className={`${
+              star <= rating
+                ? 'text-yellow-400 fill-yellow-400'
+                : 'text-white/20'
+            }`}
+          />
+        ))}
+        <span className="text-white/60 text-xs ml-1">({rating}/5)</span>
+      </div>
+    );
+  };
+
   return (
     <div className="w-full max-w-3xl mx-auto bg-gradient-to-br from-gray-900 to-black border border-indigo-500/20 rounded-2xl p-6 mt-12 shadow-xl shadow-indigo-500/10">
       {/* Header with glow effect */}
-      <div className="flex items-center justify-between mb-8 relative">
+      <div className="flex items-center justify-between mb-6 relative">
         <div className="flex items-center">
           <div className="absolute -left-2 -top-2 w-10 h-10 bg-indigo-500 rounded-full blur-xl opacity-30"></div>
           <MessageCircle className="text-indigo-400 mr-3" size={22} />
-          <h2 className="text-2xl font-bold text-white tracking-tight">Reviews & Recommendations</h2>
+          <div>
+            <h2 className="text-2xl font-bold text-white tracking-tight">Reviews & Recommendations</h2>
+            <p className="text-white/60 text-sm">Share your experience working with me</p>
+          </div>
         </div>
         <div className="bg-indigo-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full">
           {comments.length}
@@ -131,17 +225,29 @@ const LiveChat = () => {
       
       {/* Comment form with glassmorphism */}
       <form onSubmit={handleSubmitComment} className="mb-8 space-y-3">
-        <input
-          type="text"
-          placeholder="Your name"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          className="w-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition"
-          required
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <input
+            type="text"
+            placeholder="Your name"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            className="w-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition"
+            required
+          />
+          <input
+            type="text"
+            placeholder="Your position (e.g. CEO, Manager)"
+            value={userPosition}
+            onChange={(e) => setUserPosition(e.target.value)}
+            className="w-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition"
+          />
+        </div>
+        
+        <StarRating value={rating} onChange={setRating} />
+        
         <div className="flex relative">
           <textarea
-            placeholder="Add a review or recommendation..."
+            placeholder="Share your experience or recommendation..."
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             className="w-full bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition"
@@ -157,6 +263,13 @@ const LiveChat = () => {
           </button>
         </div>
       </form>
+
+      {/* Error message */}
+      {error && (
+        <div className="mb-4 text-center py-3 bg-red-500/10 border border-red-500/20 rounded-xl transition-all">
+          <p className="text-red-400">{error}</p>
+        </div>
+      )}
       
       {/* Comments list with improved cards */}
       <div className="space-y-4">
@@ -164,10 +277,6 @@ const LiveChat = () => {
           <div className="text-center py-6">
             <div className="w-8 h-8 border-t-2 border-b-2 border-indigo-500 rounded-full animate-spin mx-auto mb-2"></div>
             <p className="text-white/60">Loading reviews...</p>
-          </div>
-        ) : error ? (
-          <div className="text-center py-6 bg-red-500/10 border border-red-500/20 rounded-xl">
-            <p className="text-red-400">{error}</p>
           </div>
         ) : comments.length === 0 ? (
           <div className="text-center py-8 bg-white/5 rounded-xl border border-white/10">
@@ -179,20 +288,40 @@ const LiveChat = () => {
             <div key={comment.id} className="bg-white/5 backdrop-blur-sm rounded-3xl p-5 border border-white/10 hover:border-indigo-500/30 transition-all duration-300">
               <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center">
-                  <div className="bg-gradient-to-br from-indigo-500 to-to-indigo-700 rounded-full p-2 mr-3">
+                  <div className="bg-gradient-to-br from-indigo-500 to-indigo-700 rounded-full p-2 mr-3">
                     <User size={16} className="text-white" />
                   </div>
-                  <span className="font-medium text-white">{comment.user}</span>
+                  <div>
+                    <span className="font-medium text-white">{comment.user}</span>
+                    {comment.position && (
+                      <div className="flex items-center text-white/50 text-xs mt-1">
+                        <Briefcase size={12} className="mr-1" />
+                        <span>{comment.position}</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
                 <span className="text-xs text-white/40 bg-white/5 px-2 py-1 rounded-full">{formatTimestamp(comment.timestamp)}</span>
               </div>
+              
+              {/* Star rating display */}
+              {comment.rating && <RatingStars rating={comment.rating} />}
+              
               <p className="text-white/80 mb-4 pl-2 border-l-2 border-indigo-500/30 ml-2">{comment.content}</p>
               <div className="flex items-center text-white/60 text-sm">
                 <button 
-                  className="flex items-center hover:text-indigo-400 transition-colors"
-                  onClick={() => handleLikeComment(comment.id)}
+                  className={`flex items-center transition-colors ${
+                    comment.likedByCurrentUser 
+                      ? 'text-indigo-400 cursor-default' 
+                      : 'hover:text-indigo-400'
+                  }`}
+                  onClick={() => !comment.likedByCurrentUser && handleLikeComment(comment.id)}
+                  disabled={comment.likedByCurrentUser}
                 >
-                  <ThumbsUp size={18} className="mr-1.5" />
+                  <ThumbsUp 
+                    size={18} 
+                    className={`mr-1.5 ${comment.likedByCurrentUser ? 'fill-indigo-400' : ''}`} 
+                  />
                   <span>{comment.likes}</span>
                 </button>
               </div>
@@ -207,10 +336,6 @@ const LiveChat = () => {
            <Home size={30} className="text-white" />
         </Link>
       </div>
-
-
-
-      
     </div>
   );
 };
