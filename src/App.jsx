@@ -11,6 +11,13 @@ import CustomCursor from './components/CustomCursor';
 import FuturisticLoader from './components/Loader';
 import BottomSheetNotification from './components/Notification';
 import LiveChat from './pages/LiveChat';
+import Oasis from './pages/Oasis';
+import Crestora from './pages/Crestora';
+import Upwave from './pages/Upwave';
+import RCR from './pages/RCR';
+import Smith from './pages/Smith';
+import Konnex from './pages/Konnex';
+import Kronik from './pages/Kronik';
 
 
 const App = () => {
@@ -126,10 +133,18 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projectsgoal />} />
             <Route path="/projects/logos&brand-designs" element={<Brands />} />
+            <Route path="/projects/logos&brand-designs/oasis" element={<Oasis />} />
+            <Route path="/projects/logos&brand-designs/crestora" element={<Crestora />} />
+            <Route path="/projects/logos&brand-designs/upwave-university" element={<Upwave />} />
+            <Route path="/projects/logos&brand-designs/RCR-RACING" element={<RCR />} />
+            <Route path="/projects/logos&brand-designs/smith-xm-global" element={<Smith />} />
+            <Route path="/projects/logos&brand-designs/konnex" element={<Konnex />} />
+            <Route path="/projects/logos&brand-designs/kronik" element={<Kronik />} />
             <Route path="/projects/websites" element={<Websites />} />
             <Route path="/clients" element={<Clients />} />
             <Route path="/community" element={<LiveChat />} />
             <Route path="/projects/graphic-designs" element={<Graphics />} />
+            <Route path="/projects/logos&brand-designs/oasis" element={<Graphics />} />
           </Routes>
           <CustomCursor />
           <BottomSheetNotification />

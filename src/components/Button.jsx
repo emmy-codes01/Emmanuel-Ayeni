@@ -72,7 +72,7 @@ const navigate = useNavigate();
   };
 
   return (
-    <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center items-center px-4 py-4  animate-float">
+   <div className="flex justify-center items-center px-4 py-4 animate-float">
       <div 
         className={`relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl transition-all duration-300 flex items-center ${
           isExpanded ? 'py-2 px-5 w-full max-w-md' : 'p-1'
@@ -88,7 +88,7 @@ const navigate = useNavigate();
           className="absolute left-3 z-10 bg-indigo-500/80 hover:bg-indigo-500 rounded-full p-2 transition-all duration-300"
         >
           <ArrowLeft size={20} color='black'/>
-        </Link>
+        </Link> 
 
         {/* Menu Items */}
         <div className={`flex justify-between items-center w-full transition-all duration-300 ${
@@ -122,7 +122,7 @@ const navigate = useNavigate();
         <div className={`absolute inset-0 flex justify-center items-center transition-all duration-300 ${
           isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}>
-          <span className="text-xs font-semibold tracking-widest text-white/80 ml-8">Go Back</span>
+          <span className="text-xs font-semibold tracking-widest text-white/80 ml-8">Back</span>
         </div>
       </div>
 

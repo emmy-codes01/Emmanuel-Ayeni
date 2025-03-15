@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Home, User, Briefcase, Mail, Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Home, User, Briefcase, Mail, Menu, X, ArrowLeft } from 'lucide-react';
 
-const BottomButton = () => {
-const navigate = useNavigate();
+const HomeButton = () => {
 
-  
+
+
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [activeItem, setActiveItem] = useState('home');
+
+
+
+  const menuItems = [
+    { id: 'home', icon: Home, label: 'Home' },
+    { id: 'about', icon: User, label: 'About' },
+    { id: 'projects', icon: Briefcase, label: 'Projects' },
+    { id: 'contact', icon: Mail, label: 'Contact' },
+  ];
+
   // Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
@@ -60,7 +72,7 @@ const navigate = useNavigate();
   };
 
   return (
-    <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center items-center px-4 animate-float">
+    <div className="flex justify-center items-center px-4 py-4 animate-float">
       <div 
         className={`relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl transition-all duration-300 flex items-center ${
           isExpanded ? 'py-2 px-5 w-full max-w-md' : 'p-1'
@@ -70,12 +82,12 @@ const navigate = useNavigate();
         }}
       >
         {/* Toggle Button */}
-        <button 
-          onClick={toggleMenu}
+              <Link
+        to="/"
           className="absolute left-3 z-10 bg-indigo-500/80 hover:bg-indigo-500 rounded-full p-2 transition-all duration-300"
         >
-          {isExpanded ? <X size={20} /> : <Menu size={20} />}
-        </button>
+          <Home size={20} color='black'/>
+        </Link> 
 
         {/* Menu Items */}
         <div className={`flex justify-between items-center w-full transition-all duration-300 ${
@@ -109,7 +121,7 @@ const navigate = useNavigate();
         <div className={`absolute inset-0 flex justify-center items-center transition-all duration-300 ${
           isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'
         }`}>
-          <span className="text-xs font-semibold tracking-widest text-white/80 ml-8">MENU</span>
+          <span className="text-xs font-semibold tracking-widest text-white/80 ml-8">Home</span>
         </div>
       </div>
 
@@ -119,14 +131,7 @@ const navigate = useNavigate();
           isExpanded ? 'opacity-0 pointer-events-none transform translate-y-2' : 'opacity-0'
         }`}
       >
-        {/* Back Button */}
-          <button 
-            onClick={() => navigate(-1)} 
-            className="flex items-center gap-2 mb-6 hover:text-black/80 transition-colors"
-          >
-            <ArrowLeft size={20} />
-            <span>Back</span>
-          </button>
+        Tap to explore
       </div>
       
       <style jsx>{`
@@ -146,4 +151,4 @@ const navigate = useNavigate();
   );
 };
 
-export default BottomButton;
+export default HomeButton;

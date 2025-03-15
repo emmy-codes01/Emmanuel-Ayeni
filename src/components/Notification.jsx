@@ -10,7 +10,7 @@ const BottomSheetNotification = () => {
     // Show the notification after a short delay
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 14500);
+    }, 16500);
     return () => clearTimeout(timer);
   }, []);
 

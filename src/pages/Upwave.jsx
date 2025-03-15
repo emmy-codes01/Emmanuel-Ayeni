@@ -2,27 +2,23 @@ import React, { useEffect } from 'react'
 import ScrollReveal from 'scrollreveal';
 import ButtonGroup from '../components/ButtonGroup';
 import { ArrowRight, ArrowUp, ArrowDown, X, Eye, Mail } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import ig from '../assets/images/Instagram.png'
 import li from '../assets/images/LinkedIn.png'
 import wa from '../assets/images/WhatsApp.png'
-import grid from '../assets/images/OASIS.png'
-import CRESTORA from '../assets/images/CRESTORA.png'
-import upwavelogo from '../assets/images/upwavelogo.png'
-import RCR from '../assets/images/RCR.png'
-import SMITHXM from '../assets/images/SMITHXM.png'
-import KONNEX from '../assets/images/KONNEX.png'
-import KRONIK from '../assets/images/KRONIK.png'
+import upwave from '../assets/images/upwave.png'
+import onwhite from '../assets/images/upwave/onwhite.png'
+import onblack from '../assets/images/upwave/onblack.png'
+import onblue from '../assets/images/upwave/onblue.png'
+import onblue2 from '../assets/images/upwave/onblue2.png'
+import onblue3 from '../assets/images/upwave/onblue3.png'
+import banner from '../assets/images/upwave/banner.png'
 
 
-
-
-
-const Brands = () => {
+const Upwave = () => {
 
     React.useEffect(() => {
     // Set page title when component mounts
-    document.title = "Brands Designed by Emmy";
+    document.title = "Upwave University by Emmy";
     
     // Optional: Reset title when component unmounts
     return () => {
@@ -73,8 +69,8 @@ const Brands = () => {
      <div className='flex flex-col text-white items-stretch gap-4 px-5 lg:px-85 py-5 lg:py-15'>
       {/* Heading */}
        <div className='flex flex-col bg-white/3 border border-zinc-900 rounded-3xl border-3xl p-5 shadow-md shadow-indigo-500'>
-        <h4 className=' text-lg font-semibold '>LOGOS & BRAND <span className='text-indigo-500'>IDENTITIES</span></h4>
-        <p className='font-light opacity-70 text-[10px]'>Some lucky brands that were designed by me</p>
+        <h4 className=' text-lg font-semibold '>UPWAVE <span className='text-indigo-500'>UNIVERSITY</span></h4>
+        <p className='font-light opacity-70 text-[10px]'>CORPORATE EDUCATION</p>
       </div>
     
       
@@ -85,49 +81,49 @@ const Brands = () => {
           <div className='flex gap-4 flex-col md:flex-row w-full h-full' >
             {/* one - OASIS */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={grid} alt="logo compilation" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
+              <img src={onwhite} alt="onwhite" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
               <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>URBAN STREETWEAR CLOTHING</p>
-                  <p className='font-semibold'>OASIS NG</p>
+                  <p className='text-[8px] opacity-70'>ASSET</p>
+                  <p className='font-semibold'>LOGO</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/oasis" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/oasis" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
             {/* two - CRESTORA */}
             <div className='reveal2 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={CRESTORA} alt="CRESTORA" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
+              <img src={onblack} alt="onblack" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>COSMETIC & SKINCARE</p>
-                  <p className='font-semibold'>CRESTORA</p>
+                  <p className='text-[8px] opacity-70'>ASSET</p>
+                  <p className='font-semibold'>LOGO (ALT)</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/crestora" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/crestora" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
         
  {/* three - UPWAVE UNI */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={upwavelogo} alt="My Designs" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
+              <img src={onblue} alt="onblue" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>EDUCATION · CORPORATE</p>
-                  <p className='font-semibold'>UPWAVE UNIVERSITY</p>
+                  <p className='text-[8px] opacity-70'>ASSET</p>
+                  <p className='font-semibold'>LOGO + NAME</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/upwave-university" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/upwave-university" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
 
@@ -139,70 +135,76 @@ const Brands = () => {
           <div className='flex gap-4 flex-col md:flex-row w-full h-full' >
             {/* one - RCR */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={RCR} alt="RCR RACING" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
+              <img src={onblue2} alt="onblue2" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
               <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>SPORT · RACING · REBRANDING</p>
-                  <p className='font-semibold'>RCR RACING</p>
+                  <p className='text-[8px] opacity-70'>ASSET</p>
+                  <p className='font-semibold'>LOGO + NAME</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/RCR-RACING" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/RCR-RACING" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
             {/* two - SMITH XM */}
             <div className='reveal2 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={SMITHXM} alt="SMITHXM" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
+              <img src={onblue3} alt="onblue3" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>CRYTOCURRENCY · TRADING</p>
-                  <p className='font-semibold'>SMITH XM GLOBAL</p>
+                  <p className='text-[8px] opacity-70'>ASSET</p>
+                  <p className='font-semibold'>LOGO </p>
                 </div>
-                <Link to="/projects/logos&brand-designs/smith-xm-global" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/smith-xm-global" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
         
  {/* three - KONNEX */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={KONNEX} alt="KONNEX" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
+              <img src={banner} alt="banner" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>TECHNOLOGY · CORPORATE</p>
-                  <p className='font-semibold'>KONNEX</p>
+                  <p className='text-[8px] opacity-70'>ASSET</p>
+                  <p className='font-semibold'>OUTDOOR TRAFFIC SIGNAGE</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/konnex" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/konnex" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
 
       </div>
 
-{/* ROW 3 */}
+          
+
+
+
+
+
+{/* ROW 4 */}
       
           <div className='flex gap-4 flex-col md:flex-row w-full h-full' >
             {/* one - RCR */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={KRONIK} alt="KRONIK" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
+              <img src={upwave} alt="upwave" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/>
 
               <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>BUILDING · CONSRTUCTION</p>
-                  <p className='font-semibold'>KRONIK</p>
+                  <p className='text-[8px] opacity-70'>ASSET</p>
+                  <p className='font-semibold'>BUILDING</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/kronik" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/kronik" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
@@ -212,7 +214,7 @@ const Brands = () => {
 
 
 
-      {/* ROW 4 */}
+      {/* ROW 5 */}
               <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col lg:flex-row justify-evenly  items-center py-8 px-5 w-full h-full border border-zinc-900'>
                       {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
             
@@ -278,4 +280,4 @@ const Brands = () => {
   )
 }
 
-export default Brands
+export default Upwave

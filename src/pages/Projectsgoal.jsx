@@ -8,11 +8,24 @@ import { ArrowRight, ArrowUp, ArrowDown, X, Eye, Mail } from 'lucide-react'
 import ig from '../assets/images/Instagram.png'
 import li from '../assets/images/LinkedIn.png'
 import wa from '../assets/images/WhatsApp.png'
-import Button from '../components/Button';
+import ButtonGroup from '../components/ButtonGroup';
+import { Helmet } from 'react-helmet';
 
 
 
 const Projectsgoal = () => {
+
+
+  React.useEffect(() => {
+    // Set page title when component mounts
+    document.title = "Portfolio";
+    
+    // Optional: Reset title when component unmounts
+    return () => {
+      document.title = "Emmanuel Ayeni";
+    };
+  }, []);
+
 
   const currentYear = new Date().getFullYear();
 
@@ -54,6 +67,9 @@ const Projectsgoal = () => {
     
   return (
     <div className='flex flex-col text-white items-stretch gap-4 px-5 lg:px-85 py-5 lg:py-15 reveal'>
+      <Helmet>
+        <title>Emmanuel Ayeni | Portfolio</title>
+      </Helmet>
       {/* Heading */}
       <div className='flex flex-col bg-white/3 border border-zinc-900 rounded-3xl border-3xl p-5 shadow-md shadow-indigo-500'>
         <h4 className=' text-2xl font-semibold '>My <span className='text-indigo-500'>Portfolio</span></h4>
@@ -180,7 +196,7 @@ const Projectsgoal = () => {
 
 
 
-      <Button />
+      <ButtonGroup />
       
 
       </div>

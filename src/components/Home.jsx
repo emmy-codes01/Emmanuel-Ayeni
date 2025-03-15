@@ -10,7 +10,7 @@ import grid from '../assets/images/upwave.png'
 import ig from '../assets/images/Instagram.png'
 import li from '../assets/images/LinkedIn.png'
 import wa from '../assets/images/WhatsApp.png'
-import { ArrowRight, ArrowUp, ArrowDown, X, Eye, Mail } from 'lucide-react'
+import { ArrowRight, ArrowUp, ArrowDown, X, Eye, Mail, BadgeCheck } from 'lucide-react'
 // import FuturisticLoader from '../components/Loader'
 
 
@@ -88,27 +88,31 @@ const currentYear = new Date().getFullYear();
 
     return (
       
-    <div className='flex flex-col text-white gap-4 px-5 lg:px-85 py-5 lg:py-15' id='home'>
+    <div className='flex flex-col text-white gap-4 px-5 lg:px-45 py-5 lg:py-15' id='home'>
       {/* ============= ROW 1 ============= */}
       <div id="home" className='reveal flex md:flex-row flex-col items-stretch gap-4 justify-center'>
-        {/* left div - Profile */}
-        <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal border border-zinc-900 flex justify-center lg:flex-row items-center gap-4 md:gap-8 bg-white/3 py-5 px-5 rounded-4xl w-full md:flex-1'>
-          <img src={me} alt="Emmy" className='rounded-full md:rounded-full size-20 md:size-50 blur-xs reveal'   loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')} />
-          
-          <div className='flex flex-col gap-0.1 lg:text-left reveal'>
-            <p className='opacity-70 md:text-xs text-[10px]' style={{fontWeight: '300'}}> Hello I'm</p>
-            <p className='font-semibold md:text-2xl text-sm text-indigo-400'>Emmanuel Ayeni.</p>
-            <p className='md:text-sm text-[10px] opacity-70 max-w-xs' style={{fontWeight: '300'}}>A Creative Brand Designer, Web Developer, Founder & Mentor. <span className='hidden lg:block'> I'm known for using my Creativity to design brands and Develop aesthetically pleasing UIs and build scalable web applications that perform efficiently and solve problems.</span></p>
-          </div>
-        </div>
+       {/* Left div - Profile */}
+<div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal border border-zinc-900 flex justify-center lg:flex-row items-center gap-4 md:gap-8 bg-white/3 py-5 px-5 rounded-4xl w-full md:flex-1'>
+  <img 
+    src={me} 
+    alt="Emmy" 
+    className='rounded-full md:rounded-full size-20 md:size-32 blur-xs reveal' 
+    loading="eager"
+    onLoad={(e) => e.target.classList.remove('blur-xs')}
+  />
+  <div className='flex flex-col gap-0.1 lg:text-left reveal'>
+    <p className='opacity-70 md:text-xs text-[10px]' style={{fontWeight: '300'}}> Hello I'm</p>
+    <p className='font-semibold md:text-2xl text-sm text-indigo-400'>Emmanuel Ayeni.</p>
+    <p className='md:text-sm text-[10px] opacity-70 max-w-xs' style={{fontWeight: '300'}}>A Creative Brand Designer, Web Developer, Founder & Mentor. <span className='hidden lg:block'> I'm known for using my Creativity to design brands and Develop aesthetically pleasing UIs and build scalable web applications that perform efficiently and solve problems.</span></p>
+  </div>
+</div>
         
         {/* right div - Cards container */}
-        <div className='flex flex-col md:flex-1 gap-4 w-full '>
+        <div className='flex flex-col md:flex-1 gap-4 w-full md:max-w-[500px]'>
           {/* About Me section with bottom sheet */}
           <div id="about" className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 flex flex-col w-full border border-zinc-900 rounded-3xl reveal'>
             <div className='flex items-center justify-between md:justify-between md:gap-14 lg:gap-40 bg-white/3 border-3xl p-5 rounded-3xl'>
-              <p className='font-semibold text-xl md:text-2xl lg:text-4xl'>
+              <p className='font-semibold text-xl md:text-2xl lg:text-2xl'>
                 More <span className='text-indigo-400'>About Me.</span>
               </p>
 
@@ -125,7 +129,7 @@ const currentYear = new Date().getFullYear();
                   animation: 'slideIn 0.3s ease-out forwards',
                 }}
               >
-                <div className='grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8'>
+               <div className='grid md:grid-cols-2 gap-4 md:gap-4'>
                   <div>
                     <h3 className='text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-400'>My Journey</h3>
                     <p className='text-xs md:text-sm opacity-80 mb-3 md:mb-4' style={{fontWeight: '300'}}>
@@ -206,32 +210,28 @@ const currentYear = new Date().getFullYear();
       </div>
 
       {/* ============= ROW 2 ============= */}
-      <div className='flex flex-col md:grid md:grid-cols-3 lg:flex lg:flex-row lg:gap-4 gap-4'>
+      <div className='flex flex-col md:grid md:grid-cols-3  lg:flex lg:flex-row lg:gap-4 gap-4'>
         {/* first */}
-         <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal flex lg:flex-row flex-col md:grid md:grid-cols-3 items-stretch gap-4 justify-between bg-white/3 border-3xl py-14.5 px-5 rounded-3xl w-full h-full border border-zinc-900'>
-          <div className='reveal bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full h-full shadow-md shadow-indigo-500'>
-            <p className='text-3xl font-semibold'>03+</p>
-            <p className='opacity-60 text-xs text-center' style={{fontWeight: '300'}}>Years <br /> Experience</p>
-          </div>
-
-          <div className='reveal bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full shadow-md shadow-indigo-500'>
-            <p className='text-3xl font-semibold'>20+</p>
-            <p className='opacity-60 text-xs text-center' style={{fontWeight: '300'}}>Clients worked with</p>
-          </div>
-
-          <div className='reveal bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full shadow-md shadow-indigo-500'>
-            <p className='text-3xl font-semibold'>50+</p>
-            <p className='opacity-60 text-xs text-center' style={{fontWeight: '300'}}>Projects completed</p>
-          </div>
-        </div>
+        <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal flex lg:flex-row flex-col md:grid md:grid-cols-3 items-stretch gap-4 justify-between bg-white/3 border-3xl py-14.5 px-5 rounded-3xl w-full h-full border border-zinc-900'>
+  <div className='reveal bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full h-full shadow-md shadow-indigo-500'>
+    <p className='text-3xl md:text-2xl font-semibold'>03+</p>
+    <p className='opacity-60 text-xs text-center' style={{fontWeight: '300'}}>Years <br /> Experience</p>
+  </div>
+  <div className='reveal bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full shadow-md shadow-indigo-500'>
+    <p className='text-3xl md:text-2xl font-semibold'>20+</p>
+    <p className='opacity-60 text-xs text-center' style={{fontWeight: '300'}}>Clients worked with</p>
+  </div>
+  <div className='reveal bg-white/1.5 px-3 py-8 rounded-3xl text-center w-full shadow-md shadow-indigo-500'>
+    <p className='text-3xl md:text-2xl font-semibold'>50+</p>
+    <p className='opacity-60 text-xs text-center' style={{fontWeight: '300'}}>Projects completed</p>
+  </div>
+</div>
               
 
 
         {/* second */}
         <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-          <img src={what} alt="MY SERVICES" className='reveal w-50 md:w-42 blur-xs' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
-
+        <img src={what} alt="MY SERVICES" className='reveal w-50 md:w-40 blur-xs' loading="eager" onLoad={(e) => e.target.classList.remove('blur-xs')}/>
           <div className='flex justify-center gap-[-1rem] items-center w-full'>
             <div className='flex flex-col mr-auto'>
               <p className='text-[8px] opacity-70'>MY</p>
@@ -279,11 +279,12 @@ const currentYear = new Date().getFullYear();
                 </div>
                 
                 <div className='mt-4 md:mt-6'>
-                  <h3 className='text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-400'>Graphic Designing <span className='text-amber-300'>(Subscription Only)</span></h3>
+                  <h3 className='text-lg md:text-xl font-semibold mb-3 md:mb-4 text-indigo-400'>Graphic Designing <span className='text-amber-300 flex items-center gap-1'>(Subscription Only <BadgeCheck className="" size={18} />)</span></h3>
                   <p className='text-xs md:text-sm opacity-80 mb-3 md:mb-4' style={{fontWeight: '300'}}>
                     Great designs ain't a one-time thing, it’s ongoing. <span className='font-medium'>My subscription service</span> gives you <span className='text-amber-300'>unlimited, high-quality designs </span>whenever you need them, without the hassle of hiring a full-time designer 😲. It’s the most cost-effective and convenient way to keep your brand looking fresh 😜.
                   </p>
-                   <a href="https://wa.me/2349132489550?text=Hi%20Emmy,%20please%20send%20me%20your%20Graphic%20Design%20subscription%20Packages." className='bg-indigo-500 text-white px-2 py-2 text-xs rounded-full border border-black'>I need this</a>
+                  <a href="https://wa.me/2349132489550?text=Hi%20Emmy,%20please%20send%20me%20your%20Graphic%20Design%20subscription%20Packages." className='bg-indigo-500 text-white px-2 py-2 text-xs rounded-full border border-black'>I need this</a>
+                  
                 </div>
               </div>
             )}
@@ -309,9 +310,9 @@ const currentYear = new Date().getFullYear();
       </div>
 
       {/* ============= ROW 3 ============= */}
-        <div className='reveal flex md:flex-row flex-col items-stretch lg:gap-[-2rem] gap-2 justify-center ' id='contact'>
+        <div className='reveal flex lg:flex-row flex-col items-stretch lg:gap-[-2rem] gap-2 justify-center ' id='contact'>
           {/* one */}
-       <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col lg:flex-row justify-between items-center py-8 px-5 w-full h-full border border-zinc-900'>
+       <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col lg:flex-row md:flex-row justify-between items-center py-8 px-5 w-full h-full border border-zinc-900'>
           {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
 
           {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
@@ -326,7 +327,7 @@ const currentYear = new Date().getFullYear();
             </a> */}
                   </div>
                   
-                  <div className="socials flex gap-3 w-full h-full mr-[-1rem] reveal">
+                  <div className="socials flex md:ml-[3rem] gap-3 w-full h-full mr-[-1rem] reveal">
                       <a href="https://instagram.com/emmanuelayeni_"><img src={ig} alt="Instagram" className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'   loading="eager" // Ensure logo is eagerly loaded
                   onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
                      <a href="https://wa.me/+2349132489550"><img src={wa} alt="whatsapp" className='reveal size-20 transition-transform duration-300 hover:scale-130 blur-xs'    loading="eager" // Ensure logo is eagerly loaded

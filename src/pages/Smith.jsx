@@ -2,27 +2,24 @@ import React, { useEffect } from 'react'
 import ScrollReveal from 'scrollreveal';
 import ButtonGroup from '../components/ButtonGroup';
 import { ArrowRight, ArrowUp, ArrowDown, X, Eye, Mail } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import ig from '../assets/images/Instagram.png'
 import li from '../assets/images/LinkedIn.png'
 import wa from '../assets/images/WhatsApp.png'
-import grid from '../assets/images/OASIS.png'
-import CRESTORA from '../assets/images/CRESTORA.png'
-import upwavelogo from '../assets/images/upwavelogo.png'
-import RCR from '../assets/images/RCR.png'
-import SMITHXM from '../assets/images/SMITHXM.png'
-import KONNEX from '../assets/images/KONNEX.png'
-import KRONIK from '../assets/images/KRONIK.png'
+import onwhite from '../assets/images/smith/onwhite.png'
+import onblack from '../assets/images/smith/onblack.png'
+import onblack2 from '../assets/images/smith/onblack2.png'
+import onblack3 from '../assets/images/smith/onblack3.png'
+import panelwall from '../assets/images/smith/panelwall.png'
+import xmcoin from '../assets/images/smith/xmcoin.png'
+// import grid from '../assets/images/smith/grid.png'
+import card from '../assets/images/smith/card.png'
+import cap from '../assets/images/smith/cap.png'
 
 
-
-
-
-const Brands = () => {
-
-    React.useEffect(() => {
+const Smith = () => {
+  React.useEffect(() => {
     // Set page title when component mounts
-    document.title = "Brands Designed by Emmy";
+    document.title = "Smith XM Global by Emmy";
     
     // Optional: Reset title when component unmounts
     return () => {
@@ -67,67 +64,96 @@ const Brands = () => {
    
   }, []);
     
-
+  // Function to handle double click and download the image
+  const handleDoubleClick = (event) => {
+    const imgSrc = event.target.src;
+    const imgName = imgSrc.split('/').pop() || "downloaded-image.jpg";
+    
+    // Create a link element
+    const link = document.createElement('a');
+    
+    // Use fetch to get the image as a blob
+    fetch(imgSrc)
+      .then(response => response.blob())
+      .then(blob => {
+        // Create object URL for the blob
+        const url = window.URL.createObjectURL(blob);
+        
+        // Set link properties
+        link.href = url;
+        link.download = imgName;
+        
+        // Append to the document, click, and remove
+        document.body.appendChild(link);
+        link.click();
+        
+        // Clean up
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(link);
+      })
+      .catch(error => {
+        console.error('Error downloading image:', error);
+        alert('Failed to download image. Check console for details.');
+      });
+  };
 
   return (
      <div className='flex flex-col text-white items-stretch gap-4 px-5 lg:px-85 py-5 lg:py-15'>
       {/* Heading */}
        <div className='flex flex-col bg-white/3 border border-zinc-900 rounded-3xl border-3xl p-5 shadow-md shadow-indigo-500'>
-        <h4 className=' text-lg font-semibold '>LOGOS & BRAND <span className='text-indigo-500'>IDENTITIES</span></h4>
-        <p className='font-light opacity-70 text-[10px]'>Some lucky brands that were designed by me</p>
+        <h4 className=' text-lg font-semibold '>SMITH XM <span className='text-indigo-500'>GLOBAL</span></h4>
+        <p className='font-light opacity-70 text-[10px]'>CRYPTOCURRENCY · TRADING · EXCHANGE</p>
       </div>
     
-      
-
   
       {/* Cards wrapper */}
       
           <div className='flex gap-4 flex-col md:flex-row w-full h-full' >
             {/* one - OASIS */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={grid} alt="logo compilation" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={onwhite} alt="logo" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>URBAN STREETWEAR CLOTHING</p>
-                  <p className='font-semibold'>OASIS NG</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>LOGO ON PLAIN WHITE</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/oasis" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
-                  <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                {/* <span className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                  <span className='flex text-xs items-center gap-1'>Double click to <Eye size={10} /></span>
+                </span> */}
               </div>
             </div>
 
             {/* two - CRESTORA */}
             <div className='reveal2 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={CRESTORA} alt="CRESTORA" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={panelwall} alt="logo" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>COSMETIC & SKINCARE</p>
-                  <p className='font-semibold'>CRESTORA</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>PANEL WALL MOCKUP</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/crestora" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/crestora" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
         
  {/* three - UPWAVE UNI */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={upwavelogo} alt="My Designs" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={onblack} alt="logo" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>EDUCATION · CORPORATE</p>
-                  <p className='font-semibold'>UPWAVE UNIVERSITY</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>LOGO (ALT)</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/upwave-university" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/upwave-university" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
 
@@ -139,70 +165,91 @@ const Brands = () => {
           <div className='flex gap-4 flex-col md:flex-row w-full h-full' >
             {/* one - RCR */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={RCR} alt="RCR RACING" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={xmcoin} alt="cOIN" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>SPORT · RACING · REBRANDING</p>
-                  <p className='font-semibold'>RCR RACING</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>CUSTOM DIGITAL COIN DESIGN</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/RCR-RACING" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/RCR-RACING" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
             {/* two - SMITH XM */}
             <div className='reveal2 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={SMITHXM} alt="SMITHXM" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={onblack3} alt="logo" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>CRYTOCURRENCY · TRADING</p>
-                  <p className='font-semibold'>SMITH XM GLOBAL</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>LOGO VARIANT</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/smith-xm-global" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/smith-xm-global" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
         
  {/* three - KONNEX */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={KONNEX} alt="KONNEX" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={card} alt="card" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>TECHNOLOGY · CORPORATE</p>
-                  <p className='font-semibold'>KONNEX</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>CARD DESIGN</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/konnex" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/konnex" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
 
       </div>
 
-{/* ROW 3 */}
+
+
+
+
+{/* ROW 4 */}
       
           <div className='flex gap-4 flex-col md:flex-row w-full h-full' >
             {/* one - RCR */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={KRONIK} alt="KRONIK" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={cap} alt="cap" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>BUILDING · CONSRTUCTION</p>
-                  <p className='font-semibold'>KRONIK</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>BASEBALL CAP MOCKUP</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/kronik" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/kronik" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
+              </div>
+            </div>
+
+              
+              {/* two - RCR */}
+            <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
+              <img src={onblack2} alt="image" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
+
+              <div className='flex justify-center items-center w-full'>
+                <div className='flex flex-col mr-auto'>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>LOGO IMPRESSION</p>
+                </div>
+                {/* <Link to="/projects/logos&brand-designs/kronik" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                  <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
+                </Link> */}
               </div>
             </div>
 
@@ -212,7 +259,7 @@ const Brands = () => {
 
 
 
-      {/* ROW 4 */}
+      {/* ROW 5 */}
               <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col lg:flex-row justify-evenly  items-center py-8 px-5 w-full h-full border border-zinc-900'>
                       {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
             
@@ -278,4 +325,4 @@ const Brands = () => {
   )
 }
 
-export default Brands
+export default Smith

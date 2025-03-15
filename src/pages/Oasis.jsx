@@ -2,33 +2,30 @@ import React, { useEffect } from 'react'
 import ScrollReveal from 'scrollreveal';
 import ButtonGroup from '../components/ButtonGroup';
 import { ArrowRight, ArrowUp, ArrowDown, X, Eye, Mail } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import ig from '../assets/images/Instagram.png'
 import li from '../assets/images/LinkedIn.png'
 import wa from '../assets/images/WhatsApp.png'
 import grid from '../assets/images/OASIS.png'
-import CRESTORA from '../assets/images/CRESTORA.png'
-import upwavelogo from '../assets/images/upwavelogo.png'
-import RCR from '../assets/images/RCR.png'
-import SMITHXM from '../assets/images/SMITHXM.png'
-import KONNEX from '../assets/images/KONNEX.png'
-import KRONIK from '../assets/images/KRONIK.png'
+import oasislogo from '../assets/images/oasis/oasislogo.png'
+import oasisrationale from '../assets/images/oasis/oasisrationale.png'
+import oasiswhitebg from '../assets/images/oasis/oasiswhitebg.png'
+import oasistape from '../assets/images/oasis/oasistape.png'
+import oasisig from '../assets/images/oasis/oasisig.png'
+import oasissignage from '../assets/images/oasis/oasissignage.png'
 
 
+const Oasis = () => {
 
-
-
-const Brands = () => {
-
-    React.useEffect(() => {
+  React.useEffect(() => {
     // Set page title when component mounts
-    document.title = "Brands Designed by Emmy";
+    document.title = "Oasis by Emmy";
     
     // Optional: Reset title when component unmounts
     return () => {
       document.title = "Emmanuel Ayeni";
     };
   }, []);
+
 
   const currentYear = new Date().getFullYear();
 
@@ -68,13 +65,48 @@ const Brands = () => {
   }, []);
     
 
+  // Function to handle double click and download the image
+  const handleDoubleClick = (event) => {
+    const imgSrc = event.target.src;
+    const imgName = imgSrc.split('/').pop() || "downloaded-image.jpg";
+    
+    // Create a link element
+    const link = document.createElement('a');
+    
+    // Use fetch to get the image as a blob
+    fetch(imgSrc)
+      .then(response => response.blob())
+      .then(blob => {
+        // Create object URL for the blob
+        const url = window.URL.createObjectURL(blob);
+        
+        // Set link properties
+        link.href = url;
+        link.download = imgName;
+        
+        // Append to the document, click, and remove
+        document.body.appendChild(link);
+        link.click();
+        
+        // Clean up
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(link);
+      })
+      .catch(error => {
+        console.error('Error downloading image:', error);
+        alert('Failed to download image. Check console for details.');
+      });
+  };
+
+
+
 
   return (
      <div className='flex flex-col text-white items-stretch gap-4 px-5 lg:px-85 py-5 lg:py-15'>
       {/* Heading */}
        <div className='flex flex-col bg-white/3 border border-zinc-900 rounded-3xl border-3xl p-5 shadow-md shadow-indigo-500'>
-        <h4 className=' text-lg font-semibold '>LOGOS & BRAND <span className='text-indigo-500'>IDENTITIES</span></h4>
-        <p className='font-light opacity-70 text-[10px]'>Some lucky brands that were designed by me</p>
+        <h4 className=' text-2xl font-semibold '>OASIS <span className='text-indigo-500'>NG</span></h4>
+        <p className='font-light opacity-70 text-[10px]'>URBAN STREETWEAR & CLOTHING</p>
       </div>
     
       
@@ -86,48 +118,48 @@ const Brands = () => {
             {/* one - OASIS */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
               <img src={grid} alt="logo compilation" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>URBAN STREETWEAR CLOTHING</p>
-                  <p className='font-semibold'>OASIS NG</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>PRESENTATION</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/oasis" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/oasis" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
             {/* two - CRESTORA */}
             <div className='reveal2 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={CRESTORA} alt="CRESTORA" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={oasislogo} alt="oasislogo" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>COSMETIC & SKINCARE</p>
-                  <p className='font-semibold'>CRESTORA</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>LOGO (ALT)</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/crestora" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/crestora" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
         
  {/* three - UPWAVE UNI */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={upwavelogo} alt="My Designs" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={oasisrationale} alt="oasisrationale" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>EDUCATION · CORPORATE</p>
-                  <p className='font-semibold'>UPWAVE UNIVERSITY</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>LOGO RATIONALE</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/upwave-university" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/upwave-university" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
 
@@ -139,70 +171,76 @@ const Brands = () => {
           <div className='flex gap-4 flex-col md:flex-row w-full h-full' >
             {/* one - RCR */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={RCR} alt="RCR RACING" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={oasiswhitebg} alt="oasiswhitebg" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>SPORT · RACING · REBRANDING</p>
-                  <p className='font-semibold'>RCR RACING</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>LOGO ON PLAIN WHITE</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/RCR-RACING" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/RCR-RACING" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
             {/* two - SMITH XM */}
             <div className='reveal2 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={SMITHXM} alt="SMITHXM" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={oasistape} alt="oasistape" className='blur-xs bg-cover w-full h-full rounded-2xl' loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>CRYTOCURRENCY · TRADING</p>
-                  <p className='font-semibold'>SMITH XM GLOBAL</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>PACKAGING DUCT TAPE</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/smith-xm-global" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/smith-xm-global" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
         
  {/* three - KONNEX */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 reveal bg-white/3 rounded-4xl flex flex-col justify-between gap-7 items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={KONNEX} alt="KONNEX" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={oasissignage} alt="oasissignage" className='blur-xs bg-cover rounded-2xl w-full h-full'   loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-end items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>TECHNOLOGY · CORPORATE</p>
-                  <p className='font-semibold'>KONNEX</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>OUTDOOR LOGO SIGNAGE</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/konnex" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/konnex" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                     <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
         </div>
 
       </div>
 
-{/* ROW 3 */}
+          
+
+
+
+
+
+{/* ROW 4 */}
       
           <div className='flex gap-4 flex-col md:flex-row w-full h-full' >
             {/* one - RCR */}
             <div className='reveal1 transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col gap-11 justify-between items-center py-5 px-5 w-full h-full border border-zinc-900'>
-              <img src={KRONIK} alt="KRONIK" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
-                  onLoad={(e) => e.target.classList.remove('blur-xs')}/>
+              <img src={oasisig} alt="oasisig" className='rounded-2xl size-45 bg-cover w-full h-full blur-xs' loading="eager" // Ensure logo is eagerly loaded
+                  onLoad={(e) => e.target.classList.remove('blur-xs')} onDoubleClick={handleDoubleClick}/>
 
               <div className='flex justify-center items-center w-full'>
                 <div className='flex flex-col mr-auto'>
-                  <p className='text-[8px] opacity-70'>BUILDING · CONSRTUCTION</p>
-                  <p className='font-semibold'>KRONIK</p>
+                  <p className='text-[8px] opacity-70'>Double click image to download</p>
+                  <p className='font-semibold'>IMPRESSION</p>
                 </div>
-                <Link to="/projects/logos&brand-designs/kronik" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
+                {/* <Link to="/projects/logos&brand-designs/kronik" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
                   <span className='flex text-xs items-center gap-1'>View <Eye size={10} /></span>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
@@ -212,7 +250,7 @@ const Brands = () => {
 
 
 
-      {/* ROW 4 */}
+      {/* ROW 5 */}
               <div className='transition-all hover:shadow-lg hover:shadow-indigo-500/50 bg-white/3 rounded-4xl flex flex-col lg:flex-row justify-evenly  items-center py-8 px-5 w-full h-full border border-zinc-900'>
                       {/* <img src={works} alt="MacBook Pro" className='w-50 mb-[-1.5rem]' /> */}
             
@@ -278,4 +316,4 @@ const Brands = () => {
   )
 }
 
-export default Brands
+export default Oasis

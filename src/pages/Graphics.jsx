@@ -1,8 +1,18 @@
 import React, { useEffect } from 'react'
 import ScrollReveal from 'scrollreveal';
-import Button from '../components/Button';
+import ButtonGroup from '../components/ButtonGroup';
 
 const Graphics = () => {
+
+    React.useEffect(() => {
+    // Set page title when component mounts
+    document.title = "Graphic Designs by Emmy";
+    
+    // Optional: Reset title when component unmounts
+    return () => {
+      document.title = "Emmanuel Ayeni";
+    };
+  }, []);
 
      console.log("Graphics component rendering attempt");
 
@@ -92,7 +102,7 @@ const Graphics = () => {
         </div>
       </div>
     </footer>
-<Button />
+<ButtonGroup />
       </div>
   )
 }

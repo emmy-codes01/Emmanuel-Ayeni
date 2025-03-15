@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import ScrollReveal from 'scrollreveal';
-import Button from '../components/Button';
+import ButtonGroup from '../components/ButtonGroup';
 
 const Websites = () => {
 
@@ -87,7 +87,7 @@ const Websites = () => {
         </div>
       </div>
     </footer>
-<Button />
+<ButtonGroup />
     </div>
   )
 }
