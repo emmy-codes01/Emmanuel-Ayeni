@@ -37,8 +37,6 @@ const Upwave = () => {
       distance: '50px',
       duration: 1000,
       delay: 200,
-      easing: 'ease-in-out',
-      opacity: 0,
       reset: false, // Optional: Reset animation on scroll back
       scale: 0.8, // Optional: You can scale the element
     });
@@ -49,14 +47,14 @@ const Upwave = () => {
       distance: "800px",
       duration: 1200,
       delay: 200,
-      reset: true,
+      reset: false,
     });
     ScrollReveal().reveal(".reveal2", {
       origin: "right",
       distance: "800px",
       duration: 1200,
       delay: 200,
-      reset: true,
+      reset: false,
     });
    
    

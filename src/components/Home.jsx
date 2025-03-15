@@ -185,7 +185,7 @@ const currentYear = new Date().getFullYear();
                   <p className='font-semibold'>BRAND DESIGNS</p>
                 </div>
                 <Link to="/projects" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
-                  <span className='flex gap-1 text-xs items-center'>Explore <ArrowRight size={10} /></span>
+                  <span className='flex gap-1 text-xs items-center'>Portfolio <ArrowRight size={10} /></span>
                 </Link>
               </div>
             </div>
@@ -201,7 +201,7 @@ const currentYear = new Date().getFullYear();
                   <p className='font-semibold'>WEB APPLICATIONS</p>
                 </div>
                 <Link to="/projects" className='bg-white/4 p-2 rounded-full shadow-md shadow-indigo-500'>
-                  <span className='flex gap-1 text-xs items-center'>Explore <ArrowRight size={10} /></span>
+                  <span className='flex gap-1 text-xs items-center'>Portfolio <ArrowRight size={10} /></span>
                 </Link>
               </div>
             </div>

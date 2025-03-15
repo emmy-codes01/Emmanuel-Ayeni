@@ -17,8 +17,6 @@ const Websites = () => {
       distance: '50px',
       duration: 1000,
       delay: 200,
-      easing: 'ease-in-out',
-      opacity: 0,
       reset: false, // Optional: Reset animation on scroll back
       scale: 0.8, // Optional: You can scale the element
     });

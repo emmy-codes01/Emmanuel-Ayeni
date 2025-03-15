@@ -50,14 +50,14 @@ const Projectsgoal = () => {
       distance: "800px",
       duration: 1200,
       delay: 200,
-      reset: true,
+      reset: false,
     });
     ScrollReveal().reveal(".reveal2", {
       origin: "right",
       distance: "800px",
       duration: 1200,
       delay: 200,
-      reset: true,
+      reset: false,
     });
    
    
