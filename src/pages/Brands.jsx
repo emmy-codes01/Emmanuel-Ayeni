@@ -16,8 +16,6 @@ import KRONIK from '../assets/images/KRONIK.png'
 
 
 
-
-
 const Brands = () => {
 
     React.useEffect(() => {

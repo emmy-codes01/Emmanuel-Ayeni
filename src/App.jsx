@@ -142,7 +142,7 @@ const App = () => {
             <Route path="/projects/logos&brand-designs/kronik" element={<Kronik />} />
             <Route path="/projects/websites" element={<Websites />} />
             <Route path="/clients" element={<Clients />} />
-            <Route path="/community" element={<LiveChat />} />
+            <Route path="/success-stories" element={<LiveChat />} />
             <Route path="/projects/graphic-designs" element={<Graphics />} />
             <Route path="/projects/logos&brand-designs/oasis" element={<Graphics />} />
           </Routes>

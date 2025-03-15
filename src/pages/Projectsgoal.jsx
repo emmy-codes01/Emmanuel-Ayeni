@@ -60,8 +60,6 @@ const Projectsgoal = () => {
       reset: false,
     });
    
-   
-   
   }, []);
     
     
@@ -154,9 +152,6 @@ const Projectsgoal = () => {
                         onLoad={(e) => e.target.classList.remove('blur-xs')}/></a>
                         </div>
                     </div>
-
-      
-
          
 <footer className="w-full bg-transparent py-6 border-t border-gray-800 mt-16 mb-20">
       <div className="container mx-auto px-4">

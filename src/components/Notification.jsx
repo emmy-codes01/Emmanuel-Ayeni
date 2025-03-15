@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import me from '../assets/images/model.webp'
-import { X, MessageSquare, ArrowRight } from 'lucide-react';
+import { X, MessageSquare,  MessageSquareText, Image, Users, ArrowRight } from 'lucide-react';
 
 const BottomSheetNotification = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +10,7 @@ const BottomSheetNotification = () => {
     // Show the notification after a short delay
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 21500);
+    }, 17500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -46,23 +46,35 @@ const BottomSheetNotification = () => {
         <p className="text-gray-30 font-light text-xs max-w-[90%]">I'm currently AVAILABLE to take projects. Looking for an expert creative to handle your next project? Let's collaborate to create something amazing together.</p>
       </div>
       
-      <div className="flex flex-col gap-3">
-        <a 
-          href="https://wa.me/09132489550" 
-          className="bg-indigo-500 hover:bg-indigo-400 text-white py-3 px-4 rounded-2xl flex items-center justify-center font-semibold transition-colors"
-        >
-          Tell me about your project
-          <ArrowRight className="ml-2" size={16} />
-        </a>
+   <div className="flex flex-col gap-3">
+  <a 
+    href="https://wa.me/09132489550" 
+    className="bg-indigo-500 hover:bg-indigo-400 text-white py-3 px-4 rounded-2xl flex items-center justify-center font-semibold transition-colors"
+  >
+    <MessageSquareText className="mr-2" size={18} />
+    Tell me about your project
+    <ArrowRight className="ml-2" size={16} />
+  </a>
 
-        <Link 
-          to="/projects"
-          onClick={handleClose}
-          className="bg-white/5 hover:bg-white/10 text-white py-3 px-4 rounded-2xl flex items-center justify-center font-semibold transition-colors"
-        >
-          See my past works
-        </Link>
-      </div>
+  <Link 
+    to="/projects"
+    onClick={handleClose}
+    className="bg-gray-800 hover:bg-gray-700 text-white py-3 px-4 rounded-2xl flex items-center justify-center font-semibold transition-colors"
+  >
+    <Image className="mr-2" size={18} />
+    See my past works
+  </Link>
+
+  <Link 
+    to="/clients"
+    onClick={handleClose}
+    className="bg-indigo-700 hover:bg-indigo-600 text-white py-3 px-4 rounded-2xl flex items-center justify-center font-semibold transition-colors"
+  >
+    <Users className="mr-2" size={18} />
+    Clients' Success Stories
+  </Link>
+</div>
+
     </div>
   );
 };
