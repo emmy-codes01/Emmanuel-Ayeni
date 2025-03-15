@@ -34,6 +34,17 @@ const db = getFirestore(app);
 
 const LiveChat = () => {
 
+   React.useEffect(() => {
+      // Set page title when component mounts
+      document.title = "Reviews & Recommendations";
+      
+      // Optional: Reset title when component unmounts
+      return () => {
+        document.title = "Emmanuel Ayeni";
+      };
+    }, []);
+  
+
 
   const currentYear = new Date().getFullYear();
 
