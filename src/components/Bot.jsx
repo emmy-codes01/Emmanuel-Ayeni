@@ -27,7 +27,7 @@ const Chatbot = () => {
   const knowledgeBase = {
     // Basic info about Emmy
     "who are you": "I'm Bella, a virtual assistant for Emmy. Is there anything you'd like to know about him",
-    "what do you do": "I help answer questions about Emmy's skills, experience, and services. Emmy is a Web developer with over 3 years of experience building web applications and Brands.",
+    "what do you do": "I help answer questions about Emmy's skills, experience, and services. Emmy is a Web developer with over 3 years of experience building web applications and Bran.",
     "who is emmy": "Emmy is a skilled expert creative developer and brand designer with over 3 years of experience building web applications. Additionally, he specializes in React, JavaScript, MongoDB, Express, Node and Brand Designing.",
     "tell me about emmy": "Emmy is a creative web developer and designer who creates beautiful, functional websites and applications. With over 3 years of experience, he specializes in React, JavaScript, and UI/UX design.",
     "contact": "You can contact Emmy at eayeni185@gmail.com or through the contact form on this website.",
@@ -458,7 +458,8 @@ const Chatbot = () => {
   "morning routine": "Emmy starts his days early with a short meditation and planning session. He reviews priorities before diving into design or development work, typically saving meetings and communications for later in the day when possible. This routine helps him maintain creative focus and consistent productivity.",
   "work environment": "Emmy has created a minimalist but inspiring workspace with adjustable standing desk options and carefully considered ergonomics. He believes physical environment significantly impacts creative thinking and maintains a clean, organized space with just a few meaningful objects that inspire him.",
   "best compliment": "The compliments Emmy values most are when clients mention how their website has positively impacted their business or when users comment on how intuitive and enjoyable their experience was. These outcomes-focused affirmations mean more to him than praise about visual aesthetics alone.",
-  "creative blocks": "When facing creative blocks, Emmy steps away from screens completely. He finds physical movement, nature, and changing environments particularly effective for resetting his thinking. Sometimes the best solutions come while he's taking a walk or even during completely unrelated activities.",
+    "creative blocks": "When facing creative blocks, Emmy steps away from screens completely. He finds physical movement, nature, and changing environments particularly effective for resetting his thinking. Sometimes the best solutions come while he's taking a walk or even during completely unrelated activities.",
+  "is he the best": "If you are looking for an expert creative to handle your project or to collaborate with. Emmy is definitely the best for you. He is the only one I know!",
   
   // Thoughtful Career Reflections
   "why freelance": "Emmy chose independent work because it allows him to be selective about projects and fully invest in each client relationship. He values the freedom to set his own standards for quality and to work with clients whose missions align with his values, creating meaningful digital experiences rather than just meeting requirements.",
@@ -1504,9 +1505,9 @@ const inappropriateTerms = [
 
       {/* Chat window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-80 sm:w-96 h-96 bg-white rounded-2xl shadow-xl flex flex-col z-50 border border-gray-200">
+        <div className="fixed bottom-24 right-6 w-80 sm:w-96 h-96 bg-white rounded-3xl shadow-xl flex flex-col z-50 border border-gray-200">
           {/* Header */}
-          <div className="p-4 bg-indigo-600 text-white rounded-t-2xl flex justify-between items-center">
+          <div className="p-4 bg-indigo-600 text-white rounded-t-3xl flex justify-between items-center">
             <h3 className="font-semibold">Bella</h3>
             <button onClick={toggleChat} className="text-white hover:text-gray-200">
               <X size={20} />
