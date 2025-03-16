@@ -45,7 +45,6 @@ const LiveChat = () => {
     }, []);
   
 
-
   const currentYear = new Date().getFullYear();
 
 

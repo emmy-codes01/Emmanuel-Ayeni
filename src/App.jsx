@@ -18,6 +18,8 @@ import RCR from './pages/RCR';
 import Smith from './pages/Smith';
 import Konnex from './pages/Konnex';
 import Kronik from './pages/Kronik';
+import Blog from './pages/Blog'
+import BlogPostUploader from './pages/BlogPostUploader'
 
 
 const App = () => {
@@ -143,6 +145,8 @@ const App = () => {
             <Route path="/projects/websites" element={<Websites />} />
             <Route path="/clients" element={<Clients />} />
             <Route path="/success-stories" element={<LiveChat />} />
+            <Route path="/blogs" element={<Blog />} />
+            <Route path="/upload-blog" element={<BlogPostUploader/>} />
             <Route path="/projects/graphic-designs" element={<Graphics />} />
             <Route path="/projects/logos&brand-designs/oasis" element={<Graphics />} />
           </Routes>
