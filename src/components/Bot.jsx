@@ -26,9 +26,9 @@ const Chatbot = () => {
   // Expanded knowledge base
   const knowledgeBase = {
     // Basic info about Emmy
-    "who are you": "I'm Bella, a virtual assistant for Emmy. He is a web developer and designer specializing in React and brand design.",
-    "what do you do": "I help answer questions about Emmy's skills, experience, and services. Emmy is a Web developer with over 3 years of experience building web applications.",
-    "who is emmy": "Emmy is a talented web developer and designer with over 3 years of experience building web applications. He specializes in React, JavaScript, and UI/UX design.",
+    "who are you": "I'm Bella, a virtual assistant for Emmy. Is there anything you'd like to know about him",
+    "what do you do": "I help answer questions about Emmy's skills, experience, and services. Emmy is a Web developer with over 3 years of experience building web applications and Brands.",
+    "who is emmy": "Emmy is a skilled expert creative developer and brand designer with over 3 years of experience building web applications. Additionally, he specializes in React, JavaScript, MongoDB, Express, Node and Brand Designing.",
     "tell me about emmy": "Emmy is a creative web developer and designer who creates beautiful, functional websites and applications. With over 3 years of experience, he specializes in React, JavaScript, and UI/UX design.",
     "contact": "You can contact Emmy at eayeni185@gmail.com or through the contact form on this website.",
     "email": "You can reach Emmy at eayeni185@gmail.com for any inquiries or project discussions.",
@@ -120,6 +120,7 @@ const Chatbot = () => {
     "communication style": "Emmy is an excellent communicator who keeps clients informed throughout the project lifecycle. He explains technical concepts clearly and is always responsive to questions and concerns.",
     "revisions": "Emmy works with clients to ensure they're completely satisfied with the final product. The number of revisions depends on the project agreement, but he's always willing to make adjustments to meet client expectations.",
     "feedback": "Emmy welcomes feedback throughout the project process and uses it to improve the final product.",
+    "Is he available": "Emmy's availability varies depending on his current project load. Contact him through the website to discuss your project timeline and his availability.",
     
     // Personal Life
     "social life": "Outside of work, Emmy enjoys spending his time alone, attending tech meetups, and participating in design communities. He believes in balancing work with social activities that inspire creativity.",
@@ -655,8 +656,364 @@ const Chatbot = () => {
   "what motivates emmy to work hard": "His drive comes from a deep-seated passion for technology, the joy of problem-solving, and a desire to make a positive impact.",
   "what are his future plans": "Emmy is always on the lookout for the next big idea – whether it's mastering a new technology or launching a creative project that redefines the norm.",
   "what's emmy's role model": "Emmy looks up to visionaries who merge creativity with innovation, finding inspiration in leaders who aren't afraid to think outside the box.",
-  "what's emmy's favorite weekend activity": "Weekends for Emmy are all about recharging – a mix of exploring new places, experimenting with creative projects, and, of course, a bit of spontaneous fun!"
+    "what's emmy's favorite weekend activity": "Weekends for Emmy are all about recharging – a mix of exploring new places, experimenting with creative projects, and, of course, a bit of spontaneous fun!",
+  
 
+  // Personal Identity & Background
+  "who is emmy?": "Emmy is a multifaceted professional excelling as a MERN stack developer, brand designer, leader, entrepreneur, and mentor. He seamlessly integrates technology and creativity to deliver innovative solutions.",
+  "what is emmy's story": "Emmy's journey is marked by a relentless pursuit of excellence across various domains. Starting with a passion for technology and design, he has evolved into a leader and mentor, guiding others while driving his entrepreneurial ventures.",
+
+  // Professional Expertise
+  "what does emmy do": "Emmy specializes in developing full-stack web applications using the MERN (MongoDB, Express.js, React, Node.js) stack. He also crafts compelling brand identities, ensuring consistency across all platforms.",
+  "what are emmy's responsibilities as a MERN stack developer": "As a MERN stack developer, Emmy is responsible for designing, implementing, and maintaining full-stack applications. He collaborates with cross-functional teams to deliver high-quality software solutions. :contentReference[oaicite:0]{index=0}",
+  "what are emmy's responsibilities as a brand designer": "In his role as a brand designer, Emmy develops and maintains brand identity guidelines, creates compelling visual designs for marketing materials, and collaborates with clients and marketing teams to ensure that designs accurately reflect the brand’s desired image and messaging. :contentReference[oaicite:1]{index=1}",
+
+  // Leadership & Mentorship
+  "how does emmy approach leadership": "Emmy leads with a vision, inspiring teams to achieve collective goals. He fosters an environment of collaboration, innovation, and continuous improvement.",
+  "what is emmy's role as a mentor": "As a mentor, Emmy provides guidance and support to emerging professionals, sharing his knowledge and experience to help them navigate their career paths.",
+
+  // Entrepreneurship
+  "what are emmy's entrepreneurial ventures": "Emmy has initiated and managed several successful projects, demonstrating his ability to identify opportunities and transform ideas into viable business solutions.",
+
+  // Personal Philosophy & Lifestyle
+  "what is emmy's philosophy on work and life": "Emmy believes in balancing professional excellence with personal well-being. He advocates for continuous learning, adaptability, and maintaining integrity in all endeavors.",
+    "what are emmy's hobbies and interests": "Beyond his professional life, Emmy enjoys exploring new technologies, engaging in creative design projects, and mentoring aspiring developers and designers.",
+  
+  // Greeting Slangs with Modest, Informative Replies
+    "yo": "Hey there! How can I help you learn about Emmy's creative work today?",
+  "yoo": "Hey there! How can I help you learn about Emmy's creative work today?",
+
+"heyy ": "Hi! Curious about Emmy's design and development expertise?",
+
+"whatsup": "All good here! What would you like to know about Emmy's creative services?",
+
+"wassup": "Just helping connect people with Emmy's creative expertise! What can I tell you?",
+
+"sup": "Hey! Looking for info on Emmy's web development or brand design?",
+
+"holla": "Hello! Need details on Emmy's creative services or availability?",
+
+"hi there": "Hi there! What would you like to know about Emmy's work?",
+
+"helloo": "Hello! How can I help you discover Emmy's creative expertise today?",
+
+"greetings": "Welcome! Interested in Emmy's design work or availability?",
+
+"howdy": "Hey there! What can I tell you about Emmy's creative projects?",
+  // Informal Slang Phrases & Expressions with Context
+"what's good": "Everything's good! What can I help you discover about Emmy?",
+
+"how is it going ": "Going great! What aspects of Emmy's work interest you?",
+
+"good day": "Good day to you too! Looking for Emmy's creative services?",
+
+"salutations": "Hello there! How can I connect you with Emmy's expertise?",
+
+"let's roll": "Ready when you are! What would you like to know?",
+
+"rock on": "For sure! What can I tell you about Emmy's creative work?",
+
+"you da bomb": "Thanks! How can I help you connect with Emmy today?",
+
+"no worries": "Absolutely! What would you like to know about Emmy's services?",
+
+"peace out": "Before you go - anything you'd like to know about Emmy's work?",
+
+"keep it real": "Always do! What questions do you have about Emmy's creative expertise?",
+
+"chill out": "I'm chill! How can I help you learn about Emmy's services?",
+
+"stay woke": "Always! What can I tell you about Emmy's innovative work?",
+
+"what's  up": "Just helping people discover Emmy's creative genius! What can I tell you?",
+
+"howdy doody": "Hey there! Looking for info on Emmy's design services?",
+
+"aye": "Hey! What would you like to know about Emmy's work?",
+
+"hiya": "Hi there! How can I help you with Emmy's creative services today?",
+
+"heyo": "Hey! Interested in Emmy's design and development expertise?",
+
+"ello": "Hello there! What can I tell you about Emmy's creative projects?",
+
+"g'day": "Good day! How can I help you learn about Emmy?",
+
+"yoooo": "Hey! What would you like to know about Emmy's creative work?",
+
+"hey hey": "Hello! Looking for Emmy's web development or brand design services?",
+
+"heyya": "Hi there! What can I help you discover about Emmy today?",
+
+"howzit": "Doing great! What would you like to know about Emmy's services?",
+
+"whaddup": "Hey there! What can I tell you about Emmy's expertise?",
+
+"bonjour": "Hello! How can I help you with Emmy's creative services?",
+
+"hola": "Hi there! What would you like to know about Emmy's work?",
+
+"ciao": "Hello! Interested in Emmy's design and development talents?",
+
+"bruh": "Hey! What can I tell you about Emmy's creative projects?",
+
+"fam": "Hey there! How can I help you connect with Emmy today?",
+
+"mate": "Hello! What would you like to know about Emmy's services?",
+
+"buddy": "Hey there! Looking for info on Emmy's creative expertise?",
+
+"dude": "Hey! What can I help you discover about Emmy?",
+
+"my guy": "What's up! How can I tell you about Emmy's creative work?",
+
+"homie": "Hey there! What would you like to know about Emmy's services?",
+
+"Good morning": "Morning! How can I help you learn about Emmy today?",
+
+"good Afternoon": "Afternoon! What can I tell you about Emmy's creative projects?",
+
+"good Evening": "Evening! Looking for Emmy's design or development services?",
+
+"cheers": "Cheers! What would you like to know about Emmy's work?",
+
+"word": "Hey there! How can I help you with Emmy's creative services?",
+
+"what's crackin'": "Just connecting people with Emmy's expertise! What can I tell you?",
+
+"what's poppin'": "Hey there! What would you like to know about Emmy's creative work?",
+
+"ay yo": "What's up! How can I help you discover Emmy's services today?",
+
+"waddup": "Hey! What can I tell you about Emmy's creative expertise?",
+
+"yello": "Hello there! Looking for info on Emmy's work?",
+
+"oi": "Hey! What would you like to know about Emmy's creative services?",
+
+"namaste": "Greetings! How can I help you learn about Emmy today?",
+
+"salut": "Hello! What can I tell you about Emmy's expertise?",
+
+"ahoy": "Ahoy there! What would you like to know about Emmy's work?",
+
+"top of the morning": "And to you! How can I help you discover Emmy's creative talents?",
+
+"what it do": "Hey there! What can I tell you about Emmy's services?",
+
+"suh dude": "Hey! Looking for info on Emmy's creative work?",
+
+"how you doin": "Doing great! What would you like to know about Emmy?",
+
+"wazzup": "Hey there! How can I help you with Emmy's creative projects?",
+
+    "what's the word": "Just helping people discover Emmy! What can I tell you?",
+
+    "wow": "Right? Emmy's work often gets that reaction! Anything specific you'd like to know more about?",
+
+"oh": "Something catch your interest? Happy to elaborate on any aspect of Emmy's services!",
+
+"that's beautiful": "Emmy has a real talent for creating beautiful work. Would you like to see more examples?",
+
+"that's great": "Glad you think so! Emmy takes pride in delivering exceptional results. What else would you like to know?",
+
+"cool": "Definitely! Emmy's approach to creative work is pretty unique. Anything else you're curious about?",
+
+"nice": "Emmy's clients think so too! Is there a particular service you're interested in?",
+
+"awesome": "Emmy's work does tend to impress! Any specific questions about the services offered?",
+
+"amazing": "That's what clients say too! Emmy really puts heart into every project. What else would you like to know?",
+
+"interesting": "There's a lot of depth to Emmy's creative process! Would you like me to elaborate on anything?",
+
+"that's impressive": "Emmy will be glad to hear that! Any particular aspect that impressed you most?",
+
+"I see": "Let me know if you'd like more details on anything I've mentioned about Emmy's work!",
+
+"got it": "Great! Any other questions about Emmy's creative services?",
+
+"okay": "Feel free to ask if you need more information about Emmy's expertise!",
+
+"really": "Absolutely! Emmy's portfolio really shows the quality of work. What else would you like to know?",
+
+"seriously": "100% serious! Emmy delivers exceptional creative work. What aspects interest you most?",
+
+"no way": "It's true! Emmy's creative approach has helped many clients. Anything specific you're curious about?",
+
+"hmm": "Take your time! Emmy's services cover a lot of ground. What would you like me to clarify?",
+
+"I didn't know that": "Emmy's expertise goes deeper than most realize! Any other questions I can answer?",
+
+"Tell me more": "I'd be happy to! Which aspect of Emmy's services are you most interested in hearing about?",
+
+"that sounds good": "Emmy makes sure every project turns out that way! Anything specific you'd like to explore?",
+
+"I'm interested": "That's great to hear! What specific services of Emmy's are you most interested in?",
+
+"perfect": "Emmy aims for nothing less! Would you like to discuss how Emmy can help with your project?",
+
+"exactly what I need": "Wonderful! Emmy loves matching skills to client needs. Would you like to discuss next steps?",
+
+"not what I'm looking for": "I understand! Emmy offers various services - perhaps something else might be a better fit?",
+
+"That's expensive": "Emmy's rates reflect the quality and expertise provided. There may be options to work within different budgets though!",
+
+"that's reasonable": "Emmy tries to provide exceptional value. Would you like to discuss project specifics?",
+
+"can you explain that again": "Of course! Let me clarify Emmy's approach to [topic]. What part would you like me to explain better?",
+
+"I don't understand": "No problem! Let me explain Emmy's [service/approach] differently. Which part is unclear?",
+
+"that makes sense": "Great! Emmy believes in clear communication. What else would you like to know?",
+
+"I need to think about it": "Take all the time you need! Emmy's here when you're ready to discuss further.",
+
+"I'll get back to you": "Sounds good! Emmy will be available when you're ready to continue the conversation.",
+
+"Thank you": "You're very welcome! Emmy appreciates your interest. Anything else I can help with?",
+
+"Thanks": "My pleasure! Emmy is always happy to connect with interested people. Any other questions?",
+
+"you've been helpful": "I'm glad I could assist! Emmy aims to provide the same level of service to all clients.",
+
+"this is confusing": "Let me simplify! Emmy's approach to [topic] is basically [simplified explanation]. Better?",
+
+"I like that": "Emmy will be pleased to hear it! What aspect appeals to you most?",
+
+"that's exactly what I want": "Perfect match! Emmy excels at delivering on that kind of vision. Would you like to discuss details?",
+
+"can Emmy do this?": "Based on what you've described, yes! Emmy has experience with similar projects. Would you like details?",
+
+"how soon can Emmy start?": "Emmy's currently booking projects starting [timeframe]. Would you like to discuss scheduling?",
+
+"do you have examples?": "Emmy has several examples of similar work! Would you like me to describe some recent projects?",
+
+"what's the process like?": "Emmy's process typically involves [brief overview]. Would you like me to walk through the steps?",
+
+"how long will it take?": "For a project like yours, Emmy typically needs about [timeframe]. Does that work with your timeline?",
+
+"what's included?": "Emmy's [service] package includes [brief overview]. Would you like the full details?",
+
+"that's not what I asked": "I apologize for misunderstanding! Could you clarify what information about Emmy you're looking for?",
+
+"you didn't answer my question": "You're right, let me address that directly. Regarding your question about Emmy's [topic]...",
+
+"I'm confused": "Let's clear things up! Which part about Emmy's services would you like me to explain differently?",
+
+"this  is helpful": "I'm glad! Emmy aims to make the creative process transparent and understandable. What else can I explain?",
+
+"I need more information": "Happy to provide that! What specific aspects of Emmy's services would you like to know more about?",
+
+"sounds complicated": "Emmy makes sure the complex parts stay behind the scenes! For clients, the process is straightforward.",
+
+"I'm excited": "That's wonderful to hear! Emmy gets excited about new projects too. What aspects are you most looking forward to?",
+
+"I'm nervous": "That's completely understandable! Emmy works closely with clients to ensure comfort throughout the process.",
+
+"I've never done this before": "Emmy has guided many first-timers through this process! It'll be smooth with expert guidance.",
+
+"I've worked with others before": "Great! Emmy appreciates clients with experience. How have your previous projects gone?",
+
+"can we meet?": "Emmy offers consultations via [methods]. Would you like to schedule some time to discuss your project?",
+
+"what's Emmy's style?": "Emmy's style combines [brief style description] while adapting to each client's unique needs. Would you like examples?",
+
+"do you have availability?": "Emmy is currently booking projects starting [timeframe]. How does that align with your needs?",
+
+"that's too long": "Emmy understands timing is important! Let's discuss if there are ways to adjust the scope to meet your timeline.",
+
+"can Emmy work faster?": "For urgent projects, Emmy sometimes offers expedited services. Would you like to discuss that option?",
+
+"I need it by [date]": "Let me check if Emmy can accommodate that deadline. What's the scope of work you're envisioning?",
+
+"that's too expensive": "Emmy offers various service tiers. Perhaps we could discuss options that better fit your budget?",
+
+"I'm shopping around": "That's a smart approach! Emmy encourages finding the right fit. What factors are most important in your decision?",
+
+"I need to consult my team": "Of course! Emmy is happy to provide any additional information that might help with your team discussion.",
+
+"my budget is [amount]": "Thank you for sharing that. Emmy can discuss how to maximize value within your budget constraints.",
+
+"can you send more info?": "Absolutely! What specific information about Emmy's services would be most helpful for you?",
+
+"I'm ready to start": "Excellent! Let me tell you about Emmy's next steps to begin the creative process.",
+
+"not right now": "No problem! Emmy's services will be available when the timing is better for you.",
+
+"maybe later": "Certainly! Emmy will be here when you're ready to explore creative solutions.",
+
+"I'm just browsing": "Browse away! Feel free to ask questions about Emmy's expertise as they come to mind.",
+
+"I'm researching options": "Smart approach! What specific criteria are most important in your search?",
+
+"that's not what I expected": "I'd love to better understand what you were expecting from Emmy's services. Could you share more?",
+
+"can you customize this?": "Absolutely! Emmy specializes in customized creative solutions. What specific adaptations are you thinking of?",
+
+"I need something unique": "Emmy excels at creating unique work! What vision do you have for your project?",
+
+"will this stand out?": "Creating standout work is Emmy's specialty! What kind of impact are you hoping to make?",
+
+"I've seen similar things": "Emmy brings a fresh perspective to every project. Would you like to hear about the unique approach?",
+
+"this is exactly what I need": "That's great to hear! Emmy loves when there's a perfect match with client needs.",
+
+"I need to sleep on it": "Good idea! Emmy believes in thoughtful decisions. The information will be here when you're ready.",
+
+"I'll discuss with my partner": "Definitely! Emmy welcomes involving all decision-makers. Anything specific they might want to know?",
+
+"this is overwhelming": "Let's break it down into simpler parts! Emmy's process is actually quite straightforward when taken step by step.",
+
+"I'm excited to work together": "Emmy feels the same way! Creative collaborations are what make the work special.",
+
+"when can we get started?": "Emmy can begin the process as soon as [timeframe]. Does that work with your schedule?",
+
+"what's the first step?": "With Emmy, the first step is [initial process step]. Would you like to get that started?",
+
+"I have a tight deadline": "Emmy understands the pressure of deadlines! Let's discuss if your timeline can be accommodated.",
+
+"I need revisions to my existing [item]": "Emmy offers revision services! What aspects of your existing [item] would you like to improve?",
+
+"can you match this style?": "Emmy is versatile with styles! Could you share more about the specific style you're looking to match?",
+
+"I don't know what I need": "Emmy can help clarify that! Through a consultation, Emmy can identify the best solutions for your goals.",
+
+"I know exactly what I want": "That's always helpful! Emmy appreciates clients with clear vision. Would you like to share more details?",
+
+"will this help my business?": "Emmy focuses on creating work that delivers real business value. Let's discuss your specific goals!",
+
+"how will this look on mobile?": "Emmy prioritizes responsive design! All digital work is optimized for various screen sizes.",
+
+"I need something modern": "Emmy stays current with design trends! What aspects of modern design appeal to you most?",
+
+"I prefer classic styles": "Emmy appreciates timeless design too! Classic elements can create enduring impact.",
+
+"can you make it pop?": "Emmy knows how to create visual impact! Could you share what 'pop' means for your specific vision?",
+
+"I want something minimalist": "Emmy has a strong background in minimalist design! Clean, purposeful work is a specialty.",
+
+"make it colorful": "Emmy uses color strategically for impact! Do you have specific colors or palettes in mind?",
+
+"I need something professional": "Emmy excels at creating work with professional polish. What industry standards should be considered?",
+
+"can you make it fun?": "Emmy loves bringing playful elements into work! What kind of fun vibe are you imagining?",
+
+"I'm not creative": "No worries! Emmy brings the creative expertise while you bring the vision. It's a perfect partnership!",
+
+"I don't like it": "Thank you for your honesty! Emmy values feedback. Could you share what aspects aren't working for you?",
+
+"it's not quite right": "Emmy appreciates specific feedback! What elements would you like to see adjusted?",
+
+"I love it": "That's wonderful to hear! Emmy will be thrilled that the work resonates with you.",
+
+"it's perfect": "Emmy aims for that reaction! So glad the work meets your expectations.",
+
+"can we change the color?": "Absolutely! Emmy can explore different color options. Any specific directions you're thinking?",
+
+"we need a different approach": "Emmy is flexible and adaptable! What different direction would you like to explore?",
+
+"I changed my mind": "That happens in creative work! Emmy can pivot based on your new thinking. What's your current vision?",
 
 
 
