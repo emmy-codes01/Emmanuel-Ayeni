@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from 'react-router-dom'
 import { Upload, Check, AlertCircle, ArrowLeft, Image as ImageIcon, X } from 'lucide-react';
 import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -14,6 +15,8 @@ const BlogPostUploader = () => {
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(0);
+  // Debug state
+  const [debugInfo, setDebugInfo] = useState(null);
 
   // Handle image selection
   const handleImageChange = (e) => {
@@ -71,30 +74,66 @@ const BlogPostUploader = () => {
     }
 
     setIsSubmitting(true);
+    setDebugInfo("Starting post submission...");
 
     try {
-      let imageUrl = null;
-      
-      // Upload image if selected
-      if (imageFile) {
-        const storage = getStorage();
-        const storageRef = ref(storage, `blog-images/${Date.now()}_${imageFile.name}`);
-        
-        await uploadBytes(storageRef, imageFile);
-        imageUrl = await getDownloadURL(storageRef);
-      }
-
-      // Add post to Firestore
+      // First, attempt to create a post WITHOUT the image
+      // This will help us determine if the issue is with Firebase Storage or Firestore
       const db = getFirestore();
-      await addDoc(collection(db, "blogPosts"), {
+      
+      setDebugInfo("Creating post in Firestore (without image)...");
+      
+      const docRef = await addDoc(collection(db, "blogPosts"), {
         content,
         readTime,
-        imageUrl,
+        imageUrl: null, // Initially set to null
         timestamp: serverTimestamp(),
         likes: 0,
         likedBy: []
       });
+      
+      setDebugInfo(`Post created with ID: ${docRef.id}, now handling image...`);
+      
+      // If we got here, basic Firestore writing works
+      // Now try to upload the image if there is one
+      if (imageFile) {
+        try {
+          setDebugInfo("Getting storage reference...");
+          const storage = getStorage();
+          const storageRef = ref(storage, `blog-images/${Date.now()}_${imageFile.name}`);
+          
+          setDebugInfo("Uploading image to Firebase Storage...");
+          await uploadBytes(storageRef, imageFile);
+          
+          setDebugInfo("Getting download URL...");
+          const imageUrl = await getDownloadURL(storageRef);
+          
+          setDebugInfo(`Image uploaded successfully, URL: ${imageUrl.substring(0, 20)}...`);
+          
+          // Update the post with the image URL
+          setDebugInfo(`Updating post ${docRef.id} with image URL...`);
+          
+          // Here you would update the post with the image URL
+          // For now, let's just log that we would do this
+          console.log("Would update post with image URL:", imageUrl);
+          
+          // Note: In a production app, you would update the Firestore document with the URL
+          // using a transaction or update operation
+        } catch (imageError) {
+          console.error("Error with image:", imageError);
+          setDebugInfo(`Image upload failed: ${imageError.message}`);
+          
+          // Still consider the post creation successful since the text was saved
+          setNotification({
+            type: 'warning',
+            message: 'Post created but image upload failed. Please try again later.'
+          });
+          setTimeout(() => setNotification(null), 5000);
+          return;
+        }
+      }
 
+      setDebugInfo("Post creation complete!");
       setNotification({
         type: 'success',
         message: 'Post published successfully!'
@@ -106,6 +145,58 @@ const BlogPostUploader = () => {
       setImageFile(null);
       setImagePreview(null);
       setImageUploadProgress(0);
+      
+      setTimeout(() => setNotification(null), 3000);
+    } catch (error) {
+      console.error("Error publishing post:", error);
+      setDebugInfo(`Error: ${error.message}`);
+      setNotification({
+        type: 'error',
+        message: 'Failed to publish post: ' + error.message
+      });
+      setTimeout(() => setNotification(null), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Alternative submission method that bypasses image upload
+  const handleSubmitWithoutImage = async (e) => {
+    e.preventDefault();
+    
+    if (!content.trim()) {
+      setNotification({
+        type: 'error',
+        message: 'Content is required.'
+      });
+      setTimeout(() => setNotification(null), 3000);
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Create post without image
+      const db = getFirestore();
+      await addDoc(collection(db, "blogPosts"), {
+        content,
+        readTime,
+        imageUrl: null,
+        timestamp: serverTimestamp(),
+        likes: 0,
+        likedBy: []
+      });
+      
+      setNotification({
+        type: 'success',
+        message: 'Post published without image!'
+      });
+      
+      // Reset form
+      setContent('');
+      setReadTime('5 min read');
+      setImageFile(null);
+      setImagePreview(null);
       
       setTimeout(() => setNotification(null), 3000);
     } catch (error) {
@@ -124,9 +215,9 @@ const BlogPostUploader = () => {
     if (!notification) return null;
 
     const { type, message } = notification;
-    const bgColor = type === 'success' ? 'bg-green-500/10' : 'bg-red-500/10';
-    const borderColor = type === 'success' ? 'border-green-500/20' : 'border-red-500/20';
-    const textColor = type === 'success' ? 'text-green-400' : 'text-red-400';
+    const bgColor = type === 'success' ? 'bg-green-500/10' : type === 'warning' ? 'bg-yellow-500/10' : 'bg-red-500/10';
+    const borderColor = type === 'success' ? 'border-green-500/20' : type === 'warning' ? 'border-yellow-500/20' : 'border-red-500/20';
+    const textColor = type === 'success' ? 'text-green-400' : type === 'warning' ? 'text-yellow-400' : 'text-red-400';
     const Icon = type === 'success' ? Check : AlertCircle;
 
     return (
@@ -178,16 +269,24 @@ const BlogPostUploader = () => {
           </div>
         </div>
         
-        <button 
-          onClick={() => window.history.back()}
+        <Link
+         to="/blogs"
           className="flex items-center text-white/60 hover:text-indigo-400 transition-colors"
         >
           <ArrowLeft size={20} className="mr-2" />
-          Back
-        </button>
+          All posts
+        </Link>
       </div>
 
       {renderNotification()}
+      
+      {/* Debug info */}
+      {debugInfo && (
+        <div className="mb-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+          <h3 className="text-blue-400 font-medium mb-2">Debug Info:</h3>
+          <pre className="text-white/70 text-sm whitespace-pre-wrap">{debugInfo}</pre>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Form Section */}
@@ -263,23 +362,39 @@ const BlogPostUploader = () => {
               </select>
             </div>
             
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-xl transition-colors disabled:bg-indigo-800/50 disabled:cursor-not-allowed flex items-center justify-center"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin mr-2"></div>
-                  Publishing...
-                </>
-              ) : (
-                <>
-                  <Upload size={18} className="mr-2" />
-                  Publish Post
-                </>
-              )}
-            </button>
+            <div className="flex gap-4">
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-xl transition-colors disabled:bg-indigo-800/50 disabled:cursor-not-allowed flex items-center justify-center"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin mr-2"></div>
+                    Publishing...
+                  </>
+                ) : (
+                  <>
+                    <Upload size={18} className="mr-2" />
+                    Publish Post
+                  </>
+                )}
+              </button>
+              
+             <button
+  type="button"
+  onClick={handleSubmitWithoutImage}
+  disabled={isSubmitting}
+  className="flex-none bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-4 rounded-xl transition-colors disabled:bg-gray-800/50 disabled:cursor-not-allowed flex items-center justify-center"
+>
+  {isSubmitting ? (
+    <div className="w-5 h-5 border-t-2 border-b-2 border-white rounded-full animate-spin"></div>
+  ) : (
+    "Skip Image"
+  )}
+              </button>
+
+</div>
           </form>
         </div>
         

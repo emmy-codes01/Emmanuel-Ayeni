@@ -10,6 +10,8 @@ import Clients from './pages/Clients';
 import CustomCursor from './components/CustomCursor';
 import FuturisticLoader from './components/Loader';
 import BottomSheetNotification from './components/Notification';
+import BlogBottomSheetNotification from './components/BlogBottomSheetNotification';
+import NetworkStatusDetector from './components/NetworkStatusDetector';
 import LiveChat from './pages/LiveChat';
 import Oasis from './pages/Oasis';
 import Crestora from './pages/Crestora';
@@ -19,6 +21,7 @@ import Smith from './pages/Smith';
 import Konnex from './pages/Konnex';
 import Kronik from './pages/Kronik';
 import Blog from './pages/Blog'
+import Chatbot from './components/Bot';
 import BlogPostUploader from './pages/BlogPostUploader'
 
 
@@ -146,12 +149,16 @@ const App = () => {
             <Route path="/clients" element={<Clients />} />
             <Route path="/success-stories" element={<LiveChat />} />
             <Route path="/blogs" element={<Blog />} />
+            {/* <Route path="/bot" element={<Chatbot />} /> */}
             <Route path="/upload-blog" element={<BlogPostUploader/>} />
             <Route path="/projects/graphic-designs" element={<Graphics />} />
             <Route path="/projects/logos&brand-designs/oasis" element={<Graphics />} />
           </Routes>
+          <NetworkStatusDetector />
+          <Chatbot />
           <CustomCursor />
           <BottomSheetNotification />
+          <BlogBottomSheetNotification />
         </div>
        
         {/* Animation for shooting stars */}

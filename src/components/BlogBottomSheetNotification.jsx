@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import me from '../assets/images/model.webp'
-import { X, MessageSquare,  MessageSquareText, Image, Users, ArrowRight } from 'lucide-react';
+import { X, MessageSquare,  MessageSquareText, Image, Users, BookOpen, ArrowRight, BookText, Sparkles } from 'lucide-react';
 
-const BottomSheetNotification = () => {
+const BlogBottomSheetNotification = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // Show the notification after a short delay
     const timer = setTimeout(() => {
       setIsOpen(true);
-    }, 45500);
+    }, 120000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -42,41 +42,27 @@ const BottomSheetNotification = () => {
       </div>
       
       <div className="mb-6 text-center flex justify-center flex-col items-center">
-        <h3 className="text-2xl font-medium mb-2 text-white">Hey there!, <br /> <span className='text-lg hidden' >I'm currently AVAILABLE to take projects.</span></h3>
-        <p className="text-gray-30 font-light text-xs max-w-[90%]">I'm currently AVAILABLE to take projects. Let's collaborate to create something amazing together.</p>
+        <h3 className="text-2xl font-medium mb-2 text-white">😎 Fresh Insights & Ideas <br /> <span className='text-lg hidden' >I'm currently AVAILABLE to take projects.</span></h3>
+        <p className="text-gray-30 font-light text-xs max-w-[90%]"> Discover thought-provoking articles, expert tips, and industry insights on my blog. I also share relatable and funny content to brighten your day!</p>
       </div>
-      
+      <div className="flex text-center justify-center items-center text-sm text-gray-400 mb-4">
+              <Sparkles size={16} className="mr-1 text-yellow-400" />
+              <span>Updated daily with fresh content</span>
+            </div>
    <div className="flex flex-col gap-3">
-  <a 
-    href="https://wa.me/09132489550" 
-    className="bg-indigo-500 hover:bg-indigo-400 text-white py-3 px-4 rounded-2xl flex items-center justify-center font-semibold transition-colors"
-  >
-    <MessageSquareText className="mr-2" size={18} />
-    Tell me about your project
-    <ArrowRight className="ml-2" size={16} />
-  </a>
-
   <Link 
-    to="/projects"
-    onClick={handleClose}
-    className="bg-gray-800 hover:bg-gray-700 text-white py-3 px-4 rounded-2xl flex items-center justify-center font-semibold transition-colors"
-  >
-    <Image className="mr-2" size={18} />
-    See my past works
-  </Link>
-
-  <Link 
-          to="/success-stories"
+          to="/blogs"
           onClick={handleClose}
     className="bg-indigo-700 hover:bg-indigo-600 text-white py-3 px-4 rounded-2xl flex items-center justify-center font-semibold transition-colors"
   >
-    <Users className="mr-2" size={18} />
-    Clients' Success Stories
+    <BookOpen className="mr-2" size={18} />
+    Go to Feed
   </Link>
+
 </div>
 
     </div>
   );
 };
 
-export default BottomSheetNotification;
+export default BlogBottomSheetNotification;

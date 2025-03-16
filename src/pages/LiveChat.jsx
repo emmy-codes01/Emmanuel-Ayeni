@@ -357,7 +357,7 @@ const LiveChat = () => {
       </div>
       
       {/* Floating action button */}
-      <div className="fixed bottom-6 right-6 bg-gradient-to-r from-indigo-500 to-indigo-700 rounded-full p-3 shadow-lg shadow-indigo-500/30 cursor-pointer hover:scale-110 transition-transform duration-200">
+      <div className="fixed bottom-22 right-6 bg-gradient-to-r from-indigo-500 to-indigo-700 rounded-full p-3 shadow-lg shadow-indigo-500/30 cursor-pointer hover:scale-110 transition-transform duration-200">
         <Link to='/'>
            <Home size={30} className="text-white" />
         </Link>
