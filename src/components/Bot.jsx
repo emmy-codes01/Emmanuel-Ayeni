@@ -376,13 +376,16 @@ const Chatbot = () => {
   "approach to problems": "Emmy approaches technical challenges methodically: he clearly defines the problem, researches potential solutions, tests different approaches, implements the most effective solution, and then thoroughly tests to ensure the issue is resolved.",
   "tight deadlines": "When working with tight deadlines, Emmy focuses on prioritization, clear communication, and efficient workflows. He's transparent about what can realistically be accomplished in the available time and works with clients to identify the most critical features to deliver first.",
   "unexpected issues": "When unexpected issues arise, Emmy communicates them promptly to clients along with potential solutions. He remains solution-focused rather than problem-focused and leverages his experience to resolve issues efficiently without compromising quality.",
-  "complex requirements": "Emmy excels at breaking down complex requirements into manageable components. He uses wireframes, user stories, and clear documentation to ensure everyone has a shared understanding before development begins, which prevents misunderstandings later.",
+    "complex requirements": "Emmy excels at breaking down complex requirements into manageable components. He uses wireframes, user stories, and clear documentation to ensure everyone has a shared understanding before development begins, which prevents misunderstandings later.",
+  "Full name": "His full name is Moyinoluwa Emmanuel AYENI",
   
   // Technical Approach
   "coding standards": "Emmy follows industry best practices for code quality, including consistent formatting, descriptive naming conventions, modular architecture, comprehensive documentation, and thorough testing to ensure maintainability and reliability.",
   "technical decisions": "Emmy makes technical decisions based on project requirements, long-term maintenance considerations, performance needs, and client-specific factors. He carefully weighs pros and cons of different approaches before recommending solutions.",
   "staying current": "Emmy stays current with web development trends through continuous learning, following industry publications, participating in developer communities, taking specialized courses, and regularly experimenting with new technologies.",
-  "favorite technologies": "While Emmy is proficient with many technologies, he particularly enjoys working with React, Next.js, and Tailwind CSS due to their flexibility, performance benefits, and the excellent developer experience they provide.",
+    "favorite technologies": "While Emmy is proficient with many technologies, he particularly enjoys working with React, Next.js, and Tailwind CSS due to their flexibility, performance benefits, and the excellent developer experience they provide.",
+    "where did he school": "I may not be able to tell you where Emmy schooled exactly, but Emmy has a strong educational background, and also graduated as an outstanding student in computer science.",
+  "certificate": "Emmy has various certifications, from prestige schools, firms and companys...Is there anything else you'll like to know about his work, services or pricing?",
   
   // Handling Specific Requests
   "can you make something like": "Emmy can create custom solutions inspired by sites or applications you admire. Rather than creating exact copies, he focuses on understanding what specifically appeals to you about those references and incorporates those elements into a unique design tailored to your brand.",
@@ -412,7 +415,8 @@ const Chatbot = () => {
   "impressive": "Thank you! Emmy works hard to deliver quality results for all his clients. He's constantly refining his skills to provide even better service. Would you like to know more about any specific aspect of his work?",
   "need to discuss": "Absolutely! The best way to discuss your project with Emmy is through the contact form on this website or by emailing him directly at eayeni185@gmail.com. He typically responds within 1-2 business days to schedule a consultation.",
   "too expensive": "Emmy strives to provide value that justifies his rates, focusing on quality work that helps achieve business goals. Without knowing your budget, I can't say if there's a fit, but Emmy is sometimes able to suggest approaches that align with different budget levels.",
-  "compare to others": "Rather than comparing himself to others, Emmy focuses on understanding each client's unique needs and delivering solutions that precisely match their requirements. His combined development and design skills allow him to create cohesive experiences that some specialists might not provide.",
+    "compare to others": "Rather than comparing himself to others, Emmy focuses on understanding each client's unique needs and delivering solutions that precisely match their requirements. His combined development and design skills allow him to create cohesive experiences that some specialists might not provide.",
+  
   
   // Weird or Unexpected Questions
   "are you lying": "I'm programmed to provide accurate information about Emmy and his services. Everything I share about his skills, experience, and work approach is factual and representative of what he offers.",

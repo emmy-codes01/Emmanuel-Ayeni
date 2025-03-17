@@ -48,17 +48,17 @@ const CustomCursor = () => {
     };
   }, []);
 
-  // Trail effect with multiple dots
-  const trailCount = 5;
+  // Optional: Simplified trail with just 2 dots instead of 5
+  const trailCount = 2;
   const trails = Array(trailCount).fill().map((_, i) => {
-    const size = 12 - (i * 2);
-    const opacity = 1 - (i * 0.2);
+    const size = 4 - (i * 1);
+    const opacity = 0.4 - (i * 0.2);
     const delay = i * 50;
 
     return (
       <div 
         key={i}
-        className={`fixed rounded-full bg-indigo-500 pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2 transition-all`}
+        className="fixed rounded-full bg-indigo-400 pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2 transition-all"
         style={{ 
           left: `${position.x}px`, 
           top: `${position.y}px`,
@@ -73,18 +73,23 @@ const CustomCursor = () => {
 
   return (
     <>
+      {/* Minimal trail effect */}
       {trails}
+      
+      {/* Main cursor - much smaller now */}
       <div 
-        className={`fixed rounded-full bg-indigo-500 pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 border border-white
-          ${isHovering ? 'w-12 h-12 opacity-50' : 'w-8 h-8 opacity-30'} 
+        className={`fixed rounded-full pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-150 mix-blend-difference
+          ${isHovering ? 'w-5 h-5 bg-white' : 'w-3 h-3 bg-indigo-400 border border-white border-opacity-60'} 
           ${isClicking ? 'scale-90' : 'scale-100'}`}
         style={{ 
           left: `${position.x}px`, 
           top: `${position.y}px`,
         }}
       />
+      
+      {/* Center dot - smaller */}
       <div 
-        className={`fixed w-2 h-2 rounded-full bg-white pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-75
+        className={`fixed w-1 h-1 rounded-full bg-white pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-75
           ${isClicking ? 'scale-150' : 'scale-100'}`}
         style={{ 
           left: `${position.x}px`, 
