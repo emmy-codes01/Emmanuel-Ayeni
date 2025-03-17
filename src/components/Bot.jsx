@@ -403,7 +403,9 @@ const Chatbot = () => {
   "learning approach": "Emmy embraces continuous learning by dedicating time to courses, tutorials, and experimentation with new technologies. He regularly builds personal projects to test new skills and stays connected with developer communities to exchange knowledge.",
   "career goals": "Emmy is focused on deepening his expertise in creating exceptional digital experiences that combine technical excellence with outstanding design. He aims to work with clients who value craftsmanship and continue expanding his skills in emerging web technologies.",
   "proudest achievement": "While Emmy takes pride in all his work, he's particularly proud of projects where he solved complex technical challenges while creating intuitive user experiences that significantly impacted his clients' business success.",
-  "biggest challenge": "One of Emmy's most significant professional challenges was mastering the balance between technical perfection and practical delivery. He's learned to make strategic decisions about where to invest time for maximum client benefit.",
+    "biggest challenge": "One of Emmy's most significant professional challenges was mastering the balance between technical perfection and practical delivery. He's learned to make strategic decisions about where to invest time for maximum client benefit.",
+    "has he worked on any blockchain project": "Emmy as worked on a number of great projects, and yes HE ALSO worked on  AI and blockchain web apps and Landingages",
+  "has he worked on any AI project": "Emmy as worked on a number of great projects, and yes HE ALSO worked on  AI and blockchain web apps and Landingages",
 
   // Additional Genuine Replies
   "i like your work": "Thank you for the kind words! Emmy puts a lot of care and attention into each project. Is there a particular aspect of his work that caught your interest?",
